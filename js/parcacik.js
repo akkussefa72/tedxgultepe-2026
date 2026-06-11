@@ -99,7 +99,9 @@ function sampleTextToPoints(text, opts) {
 
   // Tavan hem yüksekliğe hem genişliğe bağlı: dar (mobil) tuvalde kısa
   // kelimeler (EŞİK, FİKİR) dev olup taşmasın, boyutlar birbirine yakın kalsın.
-  let fontSize = Math.floor(Math.min(height * 0.38, width * 0.28));
+  // 0.34: dar ekranda kelimeye biraz daha alan — noktalar sıkışmasın
+  // (uzun kelime taşması aşağıdaki maxWidth ölçümüyle zaten engelleniyor)
+  let fontSize = Math.floor(Math.min(height * 0.38, width * 0.34));
   ctx.font = `${fontSize}px ${fontFamily}`;
   const maxWidth = width * 0.78;
   const measured = ctx.measureText(text).width;
@@ -182,7 +184,8 @@ if (sec && canvas) {
     const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
     camera.position.set(0, 0, 18);
 
-    const count = window.innerWidth < 640 ? 4200 : 7200;
+    /* Dar ekranda kelime alanı küçük: daha az nokta, yoksa yapışık görünür */
+    const count = window.innerWidth < 640 ? 3000 : 7200;
 
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -237,6 +240,9 @@ if (sec && canvas) {
       camera.updateProjectionMatrix();
       worldH = 2 * camera.position.z * Math.tan((camera.fov * Math.PI) / 360);
       worldW = worldH * camera.aspect;
+      /* Nokta boyutu kelime alanına orantılı: dar tuvalde küçülür,
+         üst üste binip yapışık görünmez (0.62 taban okunurluk sınırı) */
+      material.uniforms.uSize.value = 0.26 * Math.min(1, Math.max(0.62, worldW / 14));
     }
     fitCamera();
 

@@ -53,7 +53,6 @@
   }
 
   const CELL = 122;
-  const BREAK_RADIUS = 300;
   const GRAVITY = 0.3;
   const rand = (a, b) => a + Math.random() * (b - a);
 
@@ -187,8 +186,13 @@
     setProgress(1);
   }
 
+  /* Kırma yarıçapı ekrana orantılı: dar ekranda küçülür ki cam tek-iki
+     dokunuşta bitmesin (~10 dokunuş); geniş ekranda eski 300px davranışı */
+  const breakRadius = () => Math.min(300, Math.max(110, W * 0.3));
+
   function breakAt(x, y) {
-    const R2 = BREAK_RADIUS * BREAK_RADIUS;
+    const r = breakRadius();
+    const R2 = r * r;
     let brokeReach = 0;
     for (const tr of tris) {
       if (tr.broken) continue;
@@ -331,31 +335,27 @@
         fctx.fill();
         fctx.globalCompositeOperation = "source-over";
 
-        const R = 16 * cur.scale;
+        /* TEDx X retikülü — krem kontur üstüne kırmızı X; tıklamada büyür */
+        const arm = 9 * cur.scale;
         fctx.save();
         fctx.translate(cur.x, cur.y);
-        fctx.lineWidth = 1.2;
-        fctx.strokeStyle = "rgba(255,255,255,0.65)";
+        fctx.lineCap = "round";
+        fctx.strokeStyle = "rgba(253,246,238,0.9)";
+        fctx.lineWidth = 5.5;
         fctx.beginPath();
-        fctx.arc(0, 0, R, 0, Math.PI * 2);
+        fctx.moveTo(-arm, -arm);
+        fctx.lineTo(arm, arm);
+        fctx.moveTo(arm, -arm);
+        fctx.lineTo(-arm, arm);
         fctx.stroke();
         fctx.strokeStyle = "rgba(235,0,40,0.95)";
-        fctx.lineWidth = 1.6;
+        fctx.lineWidth = 3;
         fctx.beginPath();
-        fctx.arc(0, 0, R, -0.45, 0.45);
+        fctx.moveTo(-arm, -arm);
+        fctx.lineTo(arm, arm);
+        fctx.moveTo(arm, -arm);
+        fctx.lineTo(-arm, arm);
         fctx.stroke();
-        fctx.strokeStyle = "rgba(255,255,255,0.85)";
-        fctx.lineWidth = 1.2;
-        fctx.beginPath();
-        fctx.moveTo(-4, 0);
-        fctx.lineTo(4, 0);
-        fctx.moveTo(0, -4);
-        fctx.lineTo(0, 4);
-        fctx.stroke();
-        fctx.fillStyle = "rgba(255,255,255,0.9)";
-        fctx.beginPath();
-        fctx.arc(R + 6, 0, 1.6, 0, Math.PI * 2);
-        fctx.fill();
         fctx.restore();
       }
     }

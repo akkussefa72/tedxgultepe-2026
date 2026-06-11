@@ -2343,11 +2343,12 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   .btn__label { white-space: nowrap; }
 
   /* ---- MOBİL POSTER HERO: ekran 1 = 100svh, ortalanmış kompozisyon ---- */
-  .hero { min-height: auto; padding-top: 0; padding-bottom: 2.4rem; }
+  /* İlk ekran yalnız poster: kartlar fold altında kalır (32rem kısa ekran tabanı) */
+  .hero { --hero-frame: max(100svh, 32rem); min-height: auto; padding-top: 0; padding-bottom: 2.4rem; }
   /* X ve glow yalnız ilk ekranı çerçeveler */
-  .hero__canvas, .hero__glow { height: max(72svh, 32rem); bottom: auto; }
+  .hero__canvas, .hero__glow { height: var(--hero-frame); bottom: auto; }
   .hero__inner {
-    min-height: max(72svh, 32rem); /* kısa ekran emniyeti: 32rem taban */
+    min-height: var(--hero-frame);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2406,7 +2407,7 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
     position: absolute;
     left: 0;
     right: 0;
-    top: calc(max(72svh, 32rem) - 2.6rem);
+    top: calc(var(--hero-frame) - 2.6rem);
     margin: 0;
     align-items: end;
     font-size: 0.52rem;
@@ -2431,17 +2432,13 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   .spk-grid::-webkit-scrollbar { display: none; }
   .spk-card { flex: 0 0 min(76vw, 300px); scroll-snap-align: center; }
 
-  /* Kırılma: tam ekran değil ama ezik de değil — ~2/3 ekran, iri EŞİK */
-  .kirilma { min-height: auto; }
-  .kirilma__content { min-height: 68svh; padding: 3.6rem var(--pad-x) 9rem; }
+  /* Kırılma: masaüstü gibi tam ekran — kare orantı hissi yok */
+  .kirilma__content { min-height: 100svh; padding: 3.6rem var(--pad-x) 9rem; }
   .kirilma__word { font-size: clamp(3.9rem, 17vw, 7rem); }
   .kirilma__kicker { margin-bottom: 1.2rem; }
   .kirilma__line { margin-top: 1.2rem; }
   .kirilma__rule { margin-top: 1.4rem; }
   .kirilma__cta { margin-top: 1.2rem; padding: 0.75rem 1.5rem; font-size: 0.66rem; }
-
-  /* Kelimeler: 100svh mobilde orantısız uzun */
-  .ptext { min-height: 62svh; }
 
   /* Menü: ortalama yerine üstten başla — üst boşluk dağınıklığı gider */
   .menu { justify-content: flex-start; padding-top: 6.2rem; }
@@ -2559,3 +2556,26 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   transition: transform 0.3s var(--ease-out);
 }
 .vmodal__close:hover { transform: scale(1.1) rotate(90deg); }
+
+/* ============================================================
+   TEDx X İMLECİ — markanın X'i tüm sitede (yalnız fare/trackpad).
+   SVG önce (retina'da keskin), PNG fallback, en sonda sistem imleci.
+   Metin alanları I-beam kalır; Kırılma bölümü kendi canvas X'ini çizer.
+   ============================================================ */
+@media (pointer: fine) {
+  :root {
+    --cursor-x: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2224%22%20height=%2224%22%3E%3Cpath%20d=%22M6%206%2018%2018M18%206%206%2018%22%20stroke=%22%23FDF6EE%22%20stroke-width=%226.5%22%20stroke-linecap=%22round%22/%3E%3Cpath%20d=%22M6%206%2018%2018M18%206%206%2018%22%20stroke=%22%23EB0028%22%20stroke-width=%223.6%22%20stroke-linecap=%22round%22/%3E%3C/svg%3E") 12 12,
+      url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACk0lEQVR4nLRWzWsTQRR/bzaVDZR8UE3SQiWx6E3QgwgVpWgVVDzqQcST33+Bip7E/0BaFbyICnooHkWtiI09iHjTg1hNLSZNLCauJYl0Z6ZvJk3S/Up6yYOBtzO//f3eezPzdhn02Bj02ELuCSmtAVG1T0ombcMMTSFG/3Qi6IZHB7he2SaEmCY3vTY1xxg7gmbsuy95/e92IfhLBx5xHMPxXBPD2pHIkODiufhVTFsHzoE1dh7Ez8URwfmsEvaSUzDcnhHzhTY+XxrhUjwjLuYRgFrlBOWzs3rtDtgfv4D94TNYBy+CWCgm3SINcj6r1qxDl1r46o0JosA98L981CPAQWxyRynyvz0iDnK1RhiPCWY2XWyXqBwTNflJLCxmrLELIApLLTwb2gKRVxPA0kMF9Y7I5VPW4SsOcja4GSJv7wMbTs2xcHw3Iv5zCDRSp03jdpaiS7ij0yJv7mk/aI0NJ0vMCO1DM/rNk4Gnvrl80hq/7MmkWTpH5K8nVXZFZhij7hPnEXCIdKqzM3Jf8kCBjYhshFzjINBYiOTLwDlgrN+zqudoTWMAjSCWnpeIBZKrTXaRYyKuR9Na94SwQTfeISBrlQwB3+vI3eecoo2+e6BH8zS1RBS2cRmzisNXgPpHHzW6KeonKd9zPn1XXaIlNbTvFtHvlAa55E/9e1G1cpx2ZJfqRb6XaGuK6sz26kG+nnOJVG9OduhFKE1w189nE9VQvppzi7TVOvWifCmzfOoqfYoM6H94a+369+1HM/J1PYesWzsEX5lRbWX59PUG/sltEkx06EW1cppL+ZgmR/UzQNZAdhbDsR/gY2pDqf8/cuLxDH1w5j0ZtDORSDU8Rh5Hc+AFdLFueIQeW8//KlYBAAD//zmeJ/UAAAAGSURBVAMAkDDhlwZHqxAAAAAASUVORK5CYII=") 12 12, auto;
+    --cursor-x-hot: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2228%22%20height=%2228%22%3E%3Cpath%20d=%22M6.5%206.5%2021.5%2021.5M21.5%206.5%206.5%2021.5%22%20stroke=%22%23FDF6EE%22%20stroke-width=%227.5%22%20stroke-linecap=%22round%22/%3E%3Cpath%20d=%22M6.5%206.5%2021.5%2021.5M21.5%206.5%206.5%2021.5%22%20stroke=%22%23EB0028%22%20stroke-width=%224.4%22%20stroke-linecap=%22round%22/%3E%3C/svg%3E") 14 14,
+      url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAC20lEQVR4nMxWX2sTQRCf3YsXexWaxA9hJdUvIA0x2qcWH7SmQVBfFbFKQBH9AhWxaFHw0f+aqA81bR/UQv4I4osP/gG/hE0i9RLP3K07l+R6ub0/iWDowLLL7Mz8dnZnZ4bCkInCkCnkZDDGKKjVaYOwPZSR76BEVwkhDPqgfnRJr0I9pjdaeQLkkM3IO0kJzREytuEP9nO33viTE3XpcUKitS6P2k+nN/RlVNByb2DzxDXQ8m+Bn/CwoeplxmpRb7Ba1FBbJTddvcGWTc+dHrJGLWUwY117XYTNzFXLWPjMLIwuZrkAfKMKnSQkUhXBjAq3FP+VXYTf915ae7vyCyDPJIASSJCRWKXHQ8Mw9uKsPVjpOT0aUC/fxqPFueGi3dMOWAn31Eu3esBMWw9XzVkHNi5cKd1BP+Asn54BJzXv5ABPzw3v5wBlfGscuOa8fbjXvJsX9ORT0+YsUfJRACRy5BOfnspHkrDz/JygbPN0gr9pEQeukef0DAlt4HVyekTCsc8Wjl2IsWrEUJl1ajdD1ptyCpRh8IUqwN89VncFbINuBYF6ZQmaS8/F089nzNlrT1mY9wwyAdAJ6uWFGwVFtCfgv4D2A+YLOAhov2BIgcmbEfhhCo6NYnyLApxn7tlk/Wh7XOn/DBrqB+b1qcNnZ83hJEcarLgl/JALWNnPM9OLm9mOAggymAZZS0dP4+00WJ30KU/GK0xXfWSQrzhwjTw3Tzu5d0JXjby9PG1dabOe5A96UCuUPHOj7X0SOHCNPK/cq629x5o4Bc3qAQHQKk/3CyLYuTQo1y90cmM7GHDgGnm4hzJO6toaqDzhlSk3LprXSBUpaY+8NqiUxD2UcV6vW3nq+Ra6uvGMTxntyRpohQrIR1Mgp6cC/5Y9sgVdgMeSEjvpCojlCQOH9yYpiwdsXRoJpYObKLMBeyHqkmMB5anb6sE4ZYCt3srgbaK3LoEh09A7778AAAD//0FnhbQAAAAGSURBVAMAT2wQYUSvUt4AAAAASUVORK5CYII=") 14 14, pointer;
+  }
+  html { cursor: var(--cursor-x); }
+  a, button, [role="button"], label, select, summary,
+  .btn, .burger, .kirilma__all, .cf-field select, .vmodal__close {
+    cursor: var(--cursor-x-hot);
+  }
+  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+  textarea {
+    cursor: text;
+  }
+}
