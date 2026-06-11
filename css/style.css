@@ -87,6 +87,18 @@ address { font-style: normal; }
 }
 .skip-link:focus-visible { transform: translateY(0); }
 
+/* TEDx marka yazımı — "x" küçük ve üst simge (TED'in tepesiyle hizalı).
+   Çift sınıf: .bv-check span / .bv-summary span gibi geniş span
+   seçicilerini kıdemle geçmek için */
+.tedx-x.tedx-x {
+  font-size: 0.62em;
+  line-height: 0;
+  text-transform: none;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.58em;
+}
+
 /* Reveal masks — em padding keeps Turkish diacritics (Ü, Ş, Ğ)
    and italic overhangs inside the clip box */
 .mask {
@@ -2196,7 +2208,7 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   white-space: nowrap;
   margin-left: -0.04em;
 }
-.footer__wordmark span {
+.footer__wordmark span:not(.tedx-x) {
   color: transparent;
   -webkit-text-stroke: 2px rgba(255, 255, 255, 0.35);
 }

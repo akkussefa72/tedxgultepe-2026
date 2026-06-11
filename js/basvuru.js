@@ -21,6 +21,15 @@
   const html = htm.bind(React.createElement);
   const { useState } = React;
 
+  /* TEDx marka yazımı: metindeki "TEDx"leri, x'i küçük ve üst simge
+     olacak şekilde parçalara ayırır (mailto gövdesi düz metin kalır) */
+  const tedx = (text) =>
+    String(text)
+      .split("TEDx")
+      .flatMap((part, i) =>
+        i === 0 ? [part] : ["TED", html`<span className="tedx-x" key=${"x" + i}>x</span>`, part]
+      );
+
   /* ---------- Başvuru türleri ---------- */
   const TYPES = {
     gonullu: {
@@ -171,7 +180,7 @@
               onBlur=${() => onBlur(f.id)}
               aria-describedby=${showError && error ? errId : undefined}
             />
-            <span>${f.label}</span>
+            <span>${tedx(f.label)}</span>
           </label>
           ${showError && error && html`<p className="bv-err" id=${errId} role="alert">${error}</p>`}
         </div>
@@ -222,7 +231,7 @@
     const len = (value ?? "").toString().length;
     return html`
       <div className=${"bv-field" + (showError && error ? " has-err" : "")}>
-        <label htmlFor=${f.id}>${f.label}</label>
+        <label htmlFor=${f.id}>${tedx(f.label)}</label>
         ${control}
         ${(f.hint || f.counter) &&
         html`
@@ -370,7 +379,7 @@
               ${fields.map((f) => {
                 let v = values[f.id];
                 if (f.type === "checkbox") v = v ? "Evet" : "Hayır";
-                return html`<li key=${f.id}><b>${f.label}</b><span>${(v ?? "—") || "—"}</span></li>`;
+                return html`<li key=${f.id}><b>${tedx(f.label)}</b><span>${(v ?? "—") || "—"}</span></li>`;
               })}
             </ul>
 
@@ -384,7 +393,7 @@
                     if (e.target.checked) setConsentErr(false);
                   }}
                 />
-                <span>Başvuru bilgilerimin TEDxGültepe organizasyon ekibiyle paylaşılmasını kabul ediyorum.</span>
+                <span>${tedx("Başvuru bilgilerimin TEDxGültepe organizasyon ekibiyle paylaşılmasını kabul ediyorum.")}</span>
               </label>
               ${consentErr && !consent &&
               html`<p className="bv-err" role="alert">Göndermek için onay kutusunu işaretleyin.</p>`}

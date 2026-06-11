@@ -77,6 +77,8 @@
     const countEl = $("[data-loader-count]");
     const wordEl = $("[data-loader-word]");
     const words = ["GÜLTEPE", "EŞİK", "BATMAN", "TEDxGÜLTEPE"];
+    /* TEDx marka yazımı: x küçük ve üst simge */
+    const fmtWord = (w) => w.replace("TEDx", 'TED<span class="tedx-x">x</span>');
     const num = { v: 0 };
     let wi = 0;
 
@@ -90,7 +92,7 @@
         const idx = Math.min(words.length - 1, Math.floor((num.v / 100) * words.length));
         if (idx !== wi) {
           wi = idx;
-          wordEl.textContent = words[wi];
+          wordEl.innerHTML = fmtWord(words[wi]);
         }
       },
     });

@@ -53,6 +53,34 @@ const fragmentShader = /* glsl */ `
   }
 `;
 
+/* TEDx marka yazımı: kelimedeki küçük "x"i daha küçük puntoyla ve
+   yukarı kaydırarak (üst simge) çizer; x yoksa normal fillText */
+function fillWordBrand(ctx, text, cx, cy, fontSize, fontFamily) {
+  const xi = text.indexOf("x");
+  if (xi === -1) {
+    ctx.fillText(text, cx, cy);
+    return;
+  }
+  const pre = text.slice(0, xi);
+  const post = text.slice(xi + 1);
+  const mainFont = `${fontSize}px ${fontFamily}`;
+  const xFont = `${Math.max(1, Math.round(fontSize * 0.62))}px ${fontFamily}`;
+  ctx.font = mainFont;
+  const wPre = ctx.measureText(pre).width;
+  const wPost = ctx.measureText(post).width;
+  ctx.font = xFont;
+  const wX = ctx.measureText("x").width;
+  const left = cx - (wPre + wX + wPost) / 2;
+  ctx.textAlign = "left";
+  ctx.font = mainFont;
+  ctx.fillText(pre, left, cy);
+  ctx.font = xFont;
+  ctx.fillText("x", left + wPre, cy - fontSize * 0.3);
+  ctx.font = mainFont;
+  ctx.fillText(post, left + wPre + wX, cy);
+  ctx.textAlign = "center";
+}
+
 /* Yazıyı offscreen canvas'ta örnekleyip dünya-uzayı noktalarına çevirir
    (handoff/textToPoints.ts portu) */
 function sampleTextToPoints(text, opts) {
@@ -79,7 +107,7 @@ function sampleTextToPoints(text, opts) {
     fontSize = Math.floor(fontSize * (maxWidth / measured));
     ctx.font = `${fontSize}px ${fontFamily}`;
   }
-  ctx.fillText(text, width / 2, height / 2);
+  fillWordBrand(ctx, text, width / 2, height / 2, fontSize, fontFamily);
 
   const data = ctx.getImageData(0, 0, width, height).data;
   const filled = [];
@@ -258,7 +286,7 @@ if (sec && canvas) {
     function renderCaption() {
       const word = WORDS[index];
       if (captionEl) {
-        if (word === "TEDxGÜLTEPE") captionEl.innerHTML = "<b>TEDx</b>GÜLTEPE";
+        if (word === "TEDxGÜLTEPE") captionEl.innerHTML = '<b>TED<span class="tedx-x">x</span></b>GÜLTEPE';
         else captionEl.textContent = word;
       }
       if (liveEl) liveEl.textContent = "Aktif kelime: " + word;
