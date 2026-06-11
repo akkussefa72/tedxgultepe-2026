@@ -1,0 +1,412 @@
+/* ============================================================
+   TEDxGültepe 2026 — Başvuru sayfası
+   style.css token'larını kullanır; yalnızca bu sayfaya özel stiller.
+   ============================================================ */
+
+/* ---------- Sayfa iskeleti ---------- */
+.bv-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem var(--pad-x);
+  border-bottom: 1px solid var(--line-light);
+}
+.bv-back {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gray);
+  transition: color 0.3s ease;
+}
+.bv-back:hover { color: var(--c-red); }
+.bv-date {
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gray);
+}
+.bv-date em { color: var(--c-red); font-size: 0.95rem; text-transform: none; }
+
+.bv-main {
+  max-width: 1100px;
+  min-height: 72vh;
+  padding-block: clamp(2.8rem, 6vw, 5rem);
+}
+
+.bv-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.4rem var(--pad-x);
+  border-top: 1px solid var(--line-light);
+  font-size: 0.76rem;
+  color: var(--c-gray);
+}
+
+.bv-loading {
+  padding: 4rem 0;
+  color: var(--c-gray);
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ---------- Başlıklar ---------- */
+.bv-title {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6.5vw, 4.8rem);
+  line-height: 0.98;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+}
+.bv-title em {
+  text-transform: none;
+  color: var(--c-red);
+  padding-right: 0.08em;
+}
+.bv-sub {
+  margin-top: 1.2rem;
+  max-width: 56ch;
+  color: var(--c-gray);
+  line-height: 1.6;
+}
+.bv-sub a { color: var(--c-red); border-bottom: 1px solid currentColor; }
+
+/* ---------- Adım göstergesi ---------- */
+.bv-steps {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.bv-step {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--line-light);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-gray);
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+.bv-step b { font-family: var(--f-display); font-weight: 400; font-size: 0.85rem; }
+.bv-step.is-on { border-color: var(--c-red); color: var(--c-white); }
+.bv-step.is-on b { color: var(--c-red); }
+.bv-step.is-done { color: var(--c-white); border-color: rgba(235, 0, 40, 0.45); }
+.bv-step.is-done b { color: var(--c-red); }
+
+/* ---------- Panel geçişi ---------- */
+.bv-panel { animation: bvIn 0.5s var(--ease-out) both; }
+@keyframes bvIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+.bv-panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.bv-switch {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gray);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease;
+}
+.bv-switch:hover { color: var(--c-red); }
+
+/* ---------- Tür seçimi kartları ---------- */
+.bv-types {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.bv-type {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  min-height: clamp(220px, 24vw, 300px);
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  background: var(--c-ink);
+  border: 1px solid var(--line-light);
+  color: var(--c-white);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color 0.4s ease, transform 0.5s var(--ease-out);
+}
+.bv-type::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--c-red);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease-out);
+}
+.bv-type:hover, .bv-type:focus-visible { border-color: var(--c-red); transform: translateY(-6px); }
+.bv-type:hover::before, .bv-type:focus-visible::before { transform: translateY(0); }
+
+.bv-type__idx {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  line-height: 1;
+  color: var(--c-red);
+  transition: color 0.35s ease;
+}
+.bv-type:hover .bv-type__idx { color: var(--c-black); }
+.bv-type__name {
+  margin-top: auto;
+  font-family: var(--f-display);
+  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.bv-type__desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--c-gray);
+  transition: color 0.35s ease;
+}
+.bv-type:hover .bv-type__desc { color: rgba(255, 255, 255, 0.92); }
+.bv-type__link {
+  margin-top: 0.7rem;
+  padding-bottom: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-red);
+  border-bottom: 1px solid currentColor;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+.bv-type:hover .bv-type__link { color: var(--c-white); border-color: var(--c-white); }
+
+/* ---------- Form ---------- */
+.bv-form {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  gap: 1.5rem;
+  max-width: 720px;
+}
+
+.bv-field > label {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-gray);
+}
+
+.bv-field input[type="text"],
+.bv-field input[type="email"],
+.bv-field input[type="tel"],
+.bv-field input[type="url"],
+.bv-field select,
+.bv-field textarea {
+  width: 100%;
+  padding: 0.95rem 1.05rem;
+  background: var(--c-ink);
+  border: 1px solid var(--line-light);
+  color: var(--c-white);
+  font: inherit;
+  font-size: 0.95rem;
+  border-radius: 0;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.bv-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23EB0028' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.6rem;
+  cursor: pointer;
+}
+.bv-field select:invalid,
+.bv-field select option[value=""] { color: var(--c-gray); }
+.bv-field textarea { resize: vertical; min-height: 8.5rem; }
+
+.bv-field input:focus,
+.bv-field select:focus,
+.bv-field textarea:focus {
+  outline: none;
+  border-color: var(--c-red);
+}
+.bv-field input::placeholder,
+.bv-field textarea::placeholder { color: rgba(143, 143, 143, 0.7); }
+
+.bv-field.has-err input,
+.bv-field.has-err select,
+.bv-field.has-err textarea {
+  border-color: var(--c-red);
+  background: rgba(235, 0, 40, 0.07);
+}
+
+.bv-hint {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.45rem;
+  font-size: 0.76rem;
+  color: var(--c-gray);
+}
+.bv-err {
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ff5c76;
+}
+.bv-form-err {
+  padding: 0.85rem 1.05rem;
+  border: 1px solid var(--c-red);
+  background: rgba(235, 0, 40, 0.08);
+  font-size: 0.85rem;
+  color: #ff5c76;
+}
+
+.bv-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  cursor: pointer;
+}
+.bv-check input {
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.18rem;
+  accent-color: var(--c-red);
+  cursor: pointer;
+}
+.bv-check span {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--c-gray);
+}
+.bv-check:hover span { color: var(--c-white); }
+.bv-field.has-err .bv-check span { color: #ff5c76; }
+
+.bv-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+/* ---------- Özet ---------- */
+.bv-summary {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 1px solid var(--line-light);
+  max-width: 760px;
+}
+.bv-summary li {
+  display: grid;
+  grid-template-columns: minmax(130px, 230px) 1fr;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--line-light);
+  font-size: 0.92rem;
+}
+.bv-summary li:last-child { border-bottom: 0; }
+.bv-summary b {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gray);
+  align-self: baseline;
+  padding-top: 0.15rem;
+}
+.bv-summary span {
+  color: var(--c-white);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bv-consent { margin-top: 1.8rem; max-width: 760px; }
+
+/* ---------- Başarı ekranı ---------- */
+.bv-success {
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border: 1px solid var(--c-red);
+  background: rgba(235, 0, 40, 0.06);
+}
+.bv-success__x {
+  display: block;
+  font-family: var(--f-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1;
+  color: var(--c-red);
+  margin-bottom: 1.2rem;
+}
+
+/* ---------- Fallback (CDN/JS yok) ---------- */
+.bv-fallback ul {
+  margin-top: 2rem;
+  border: 1px solid var(--line-light);
+  max-width: 560px;
+}
+.bv-fallback li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--line-light);
+}
+.bv-fallback li:last-child { border-bottom: 0; }
+.bv-fallback b {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-red);
+}
+.bv-fallback a { color: var(--c-white); border-bottom: 1px solid var(--line-light); }
+.bv-fallback a:hover { color: var(--c-red); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .bv-types { grid-template-columns: 1fr; }
+  .bv-type { min-height: 0; }
+  .bv-type__name { margin-top: 0.6rem; }
+  .bv-steps { flex-direction: column; gap: 0.4rem; }
+  .bv-step { padding: 0.55rem 0.8rem; }
+}
+
+@media (max-width: 520px) {
+  .bv-date { display: none; }
+  .bv-summary li { grid-template-columns: 1fr; gap: 0.25rem; }
+  .bv-actions .btn { width: 100%; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .bv-panel { animation: none; }
+}
