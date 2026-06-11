@@ -2407,15 +2407,15 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
     position: absolute;
     left: 0;
     right: 0;
-    top: calc(var(--hero-frame) - 2.6rem);
+    top: calc(var(--hero-frame) - 3.3rem);
     margin: 0;
     align-items: end;
-    font-size: 0.52rem;
-    letter-spacing: 0.12em;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
   }
   .hero__bottom > * { white-space: nowrap; }
-  .hero__scroll { gap: 0.35rem; }
-  .hero__scroll i { height: 1.4rem; }
+  .hero__scroll { gap: 0.45rem; }
+  .hero__scroll i { height: 1.7rem; }
   .hero__cards { margin-top: 0.9rem; gap: 0.8rem; }
 
   /* Konuşmacılar: alt alta 8 kart çok uzun — yatay kaydırmalı şerit */
@@ -2558,24 +2558,50 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 .vmodal__close:hover { transform: scale(1.1) rotate(90deg); }
 
 /* ============================================================
-   TEDx X İMLECİ — markanın X'i tüm sitede (yalnız fare/trackpad).
-   SVG önce (retina'da keskin), PNG fallback, en sonda sistem imleci.
-   Metin alanları I-beam kalır; Kırılma bölümü kendi canvas X'ini çizer.
+   ÖZEL İMLEÇ — hero parçacık X'inin minyatürü (js/imlec.js çizer).
+   Sınıfı JS ekler: script çalışmazsa native ok aynen kalır.
    ============================================================ */
 @media (pointer: fine) {
-  :root {
-    --cursor-x: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2224%22%20height=%2224%22%3E%3Cpath%20d=%22M6%206%2018%2018M18%206%206%2018%22%20stroke=%22%23FDF6EE%22%20stroke-width=%226.5%22%20stroke-linecap=%22round%22/%3E%3Cpath%20d=%22M6%206%2018%2018M18%206%206%2018%22%20stroke=%22%23EB0028%22%20stroke-width=%223.6%22%20stroke-linecap=%22round%22/%3E%3C/svg%3E") 12 12,
-      url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACk0lEQVR4nLRWzWsTQRR/bzaVDZR8UE3SQiWx6E3QgwgVpWgVVDzqQcST33+Bip7E/0BaFbyICnooHkWtiI09iHjTg1hNLSZNLCauJYl0Z6ZvJk3S/Up6yYOBtzO//f3eezPzdhn02Bj02ELuCSmtAVG1T0ombcMMTSFG/3Qi6IZHB7he2SaEmCY3vTY1xxg7gmbsuy95/e92IfhLBx5xHMPxXBPD2pHIkODiufhVTFsHzoE1dh7Ez8URwfmsEvaSUzDcnhHzhTY+XxrhUjwjLuYRgFrlBOWzs3rtDtgfv4D94TNYBy+CWCgm3SINcj6r1qxDl1r46o0JosA98L981CPAQWxyRynyvz0iDnK1RhiPCWY2XWyXqBwTNflJLCxmrLELIApLLTwb2gKRVxPA0kMF9Y7I5VPW4SsOcja4GSJv7wMbTs2xcHw3Iv5zCDRSp03jdpaiS7ij0yJv7mk/aI0NJ0vMCO1DM/rNk4Gnvrl80hq/7MmkWTpH5K8nVXZFZhij7hPnEXCIdKqzM3Jf8kCBjYhshFzjINBYiOTLwDlgrN+zqudoTWMAjSCWnpeIBZKrTXaRYyKuR9Na94SwQTfeISBrlQwB3+vI3eecoo2+e6BH8zS1RBS2cRmzisNXgPpHHzW6KeonKd9zPn1XXaIlNbTvFtHvlAa55E/9e1G1cpx2ZJfqRb6XaGuK6sz26kG+nnOJVG9OduhFKE1w189nE9VQvppzi7TVOvWifCmzfOoqfYoM6H94a+369+1HM/J1PYesWzsEX5lRbWX59PUG/sltEkx06EW1cppL+ZgmR/UzQNZAdhbDsR/gY2pDqf8/cuLxDH1w5j0ZtDORSDU8Rh5Hc+AFdLFueIQeW8//KlYBAAD//zmeJ/UAAAAGSURBVAMAkDDhlwZHqxAAAAAASUVORK5CYII=") 12 12, auto;
-    --cursor-x-hot: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2228%22%20height=%2228%22%3E%3Cpath%20d=%22M6.5%206.5%2021.5%2021.5M21.5%206.5%206.5%2021.5%22%20stroke=%22%23FDF6EE%22%20stroke-width=%227.5%22%20stroke-linecap=%22round%22/%3E%3Cpath%20d=%22M6.5%206.5%2021.5%2021.5M21.5%206.5%206.5%2021.5%22%20stroke=%22%23EB0028%22%20stroke-width=%224.4%22%20stroke-linecap=%22round%22/%3E%3C/svg%3E") 14 14,
-      url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAC20lEQVR4nMxWX2sTQRCf3YsXexWaxA9hJdUvIA0x2qcWH7SmQVBfFbFKQBH9AhWxaFHw0f+aqA81bR/UQv4I4osP/gG/hE0i9RLP3K07l+R6ub0/iWDowLLL7Mz8dnZnZ4bCkInCkCnkZDDGKKjVaYOwPZSR76BEVwkhDPqgfnRJr0I9pjdaeQLkkM3IO0kJzREytuEP9nO33viTE3XpcUKitS6P2k+nN/RlVNByb2DzxDXQ8m+Bn/CwoeplxmpRb7Ba1FBbJTddvcGWTc+dHrJGLWUwY117XYTNzFXLWPjMLIwuZrkAfKMKnSQkUhXBjAq3FP+VXYTf915ae7vyCyDPJIASSJCRWKXHQ8Mw9uKsPVjpOT0aUC/fxqPFueGi3dMOWAn31Eu3esBMWw9XzVkHNi5cKd1BP+Asn54BJzXv5ABPzw3v5wBlfGscuOa8fbjXvJsX9ORT0+YsUfJRACRy5BOfnspHkrDz/JygbPN0gr9pEQeukef0DAlt4HVyekTCsc8Wjl2IsWrEUJl1ajdD1ptyCpRh8IUqwN89VncFbINuBYF6ZQmaS8/F089nzNlrT1mY9wwyAdAJ6uWFGwVFtCfgv4D2A+YLOAhov2BIgcmbEfhhCo6NYnyLApxn7tlk/Wh7XOn/DBrqB+b1qcNnZ83hJEcarLgl/JALWNnPM9OLm9mOAggymAZZS0dP4+00WJ30KU/GK0xXfWSQrzhwjTw3Tzu5d0JXjby9PG1dabOe5A96UCuUPHOj7X0SOHCNPK/cq629x5o4Bc3qAQHQKk/3CyLYuTQo1y90cmM7GHDgGnm4hzJO6toaqDzhlSk3LprXSBUpaY+8NqiUxD2UcV6vW3nq+Ra6uvGMTxntyRpohQrIR1Mgp6cC/5Y9sgVdgMeSEjvpCojlCQOH9yYpiwdsXRoJpYObKLMBeyHqkmMB5anb6sE4ZYCt3srgbaK3LoEh09A7778AAAD//0FnhbQAAAAGSURBVAMAT2wQYUSvUt4AAAAASUVORK5CYII=") 14 14, pointer;
+  html.imlec-js, html.imlec-js * { cursor: none !important; }
+  /* Metin alanlarında takipçi gizlenir, I-beam geri gelir */
+  html.imlec-js input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+  html.imlec-js textarea {
+    cursor: text !important;
   }
-  html { cursor: var(--cursor-x); }
-  a, button, [role="button"], label, select, summary,
-  .btn, .burger, .kirilma__all, .cf-field select, .vmodal__close {
-    cursor: var(--cursor-x-hot);
-  }
-  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
-  textarea {
-    cursor: text;
-  }
+}
+.imlecx {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.imlecx__halo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(235, 0, 40, 0.4), rgba(235, 0, 40, 0.12) 45%, transparent 70%);
+  will-change: transform, opacity;
+}
+.imlecx__x {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  will-change: transform;
+}
+.imlecx__x path {
+  stroke: var(--c-red);
+  stroke-width: 11;
+  stroke-linecap: round;
+  fill: none;
+}
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .imlecx { display: none; }
 }

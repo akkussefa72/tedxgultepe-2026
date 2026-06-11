@@ -410,10 +410,3 @@
 @media (prefers-reduced-motion: reduce) {
   .bv-panel { animation: none; }
 }
-
-/* TEDx X imleci — bv form kontrolleri de vurgulu X kullanır (style.css'teki tanım) */
-@media (pointer: fine) {
-  .bv-switch, .bv-type, .bv-field select, .bv-check, .bv-check input {
-    cursor: var(--cursor-x-hot);
-  }
-}
