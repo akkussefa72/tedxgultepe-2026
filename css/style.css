@@ -1875,18 +1875,10 @@ body.menu-open { overflow: hidden; }
   text-transform: uppercase;
   color: var(--c-red);
 }
-.sponsors__logo--vektor {
-  font-family: var(--f-display);
-  font-size: clamp(2.6rem, 7vw, 5.5rem);
-  line-height: 1;
-  letter-spacing: 0.05em;
-}
-.sponsors__logo--vektor small {
-  font-family: var(--f-serif);
-  font-style: italic;
-  font-size: 0.4em;
-  margin-left: 0.3em;
-  color: var(--c-red);
+/* Ana partner — kare rozet logo (gerçek vektör SVG, her yoğunlukta net) */
+.sponsors__logo-img {
+  height: clamp(7rem, 16vw, 10rem);
+  width: auto;
 }
 
 .sponsors__grid {
