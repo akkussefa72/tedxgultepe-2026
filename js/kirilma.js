@@ -123,6 +123,10 @@
   }
 
   function resize() {
+    /* Mobilde URL çubuğu daralması resize tetikler ama bölüm ölçüsü
+       (100svh) değişmez — cam bir kez kırılır, kaydırmada sıfırlanmaz.
+       Yalnız gerçek değişimde (genişlik / ekran döndürme) yeniden kur. */
+    if (W > 0 && sec.clientWidth === W && Math.abs(sec.clientHeight - H) < 150) return;
     DPR = Math.min(window.devicePixelRatio || 1, 2);
     W = sec.clientWidth;
     H = sec.clientHeight;

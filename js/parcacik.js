@@ -18,7 +18,7 @@ const SCATTER_AMP = 4.2;
 const MOUSE_AMP = 3.0;
 const MOUSE_RADIUS = 2.6;
 const IDLE_WOBBLE = 0.05;
-const CYCLE_MS = 3600;
+const CYCLE_MS = 4600;
 
 const vertexShader = /* glsl */ `
   uniform float uSize;
@@ -96,6 +96,9 @@ function sampleTextToPoints(text, opts) {
   ctx.fillStyle = "#fff";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
+  /* Harf araları: noktalar bitişik harfleri doldurup okunmaz yapıyor;
+     destekleyen tarayıcılarda araları aç (desteklemeyen yok sayar) */
+  ctx.letterSpacing = "0.06em";
 
   // Tavan hem yüksekliğe hem genişliğe bağlı: dar (mobil) tuvalde kısa
   // kelimeler (EŞİK, FİKİR) dev olup taşmasın, boyutlar birbirine yakın kalsın.
@@ -103,7 +106,8 @@ function sampleTextToPoints(text, opts) {
   // (uzun kelime taşması aşağıdaki maxWidth ölçümüyle zaten engelleniyor)
   let fontSize = Math.floor(Math.min(height * 0.38, width * 0.34));
   ctx.font = `${fontSize}px ${fontFamily}`;
-  const maxWidth = width * 0.78;
+  /* Dar tuvalde uzun kelime (TEDxGÜLTEPE) ezilmesin: alan %92'ye çıkar */
+  const maxWidth = width * (width < 640 ? 0.92 : 0.78);
   const measured = ctx.measureText(text).width;
   if (measured > maxWidth && measured > 0) {
     fontSize = Math.floor(fontSize * (maxWidth / measured));
@@ -242,7 +246,7 @@ if (sec && canvas) {
       worldW = worldH * camera.aspect;
       /* Nokta boyutu kelime alanına orantılı: dar tuvalde küçülür,
          üst üste binip yapışık görünmez (0.62 taban okunurluk sınırı) */
-      material.uniforms.uSize.value = 0.26 * Math.min(1, Math.max(0.62, worldW / 14));
+      material.uniforms.uSize.value = 0.26 * Math.min(1, Math.max(0.5, worldW / 14));
     }
     fitCamera();
 
