@@ -2341,9 +2341,9 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   /* ---- MOBİL POSTER HERO: ekran 1 = 100svh, ortalanmış kompozisyon ---- */
   .hero { min-height: auto; padding-top: 0; padding-bottom: 2.4rem; }
   /* X ve glow yalnız ilk ekranı çerçeveler */
-  .hero__canvas, .hero__glow { height: max(66svh, 32rem); bottom: auto; }
+  .hero__canvas, .hero__glow { height: max(72svh, 32rem); bottom: auto; }
   .hero__inner {
-    min-height: max(66svh, 32rem); /* kısa ekran emniyeti: 32rem taban */
+    min-height: max(72svh, 32rem); /* kısa ekran emniyeti: 32rem taban */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2402,7 +2402,7 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
     position: absolute;
     left: 0;
     right: 0;
-    top: calc(max(66svh, 32rem) - 2.6rem);
+    top: calc(max(72svh, 32rem) - 2.6rem);
     margin: 0;
     align-items: end;
     font-size: 0.52rem;
