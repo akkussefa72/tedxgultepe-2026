@@ -589,3 +589,58 @@
     });
   }
 })();
+
+/* ============================================================
+   EŞİK DUVARI — "Senin eşiğin ne?" interaktif duvar (v49)
+   Cevaplar yalnız ziyaretçinin tarayıcısında (localStorage) tutulur.
+   ============================================================ */
+(() => {
+  "use strict";
+  const wall = document.querySelector("[data-wall]");
+  const form = document.querySelector("[data-wall-form]");
+  if (!wall || !form) return;
+  const hint = document.querySelector("[data-wall-hint]");
+  const input = form.querySelector("input");
+  const KEY = "tedxgultepe-esik-duvari";
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const load = () => {
+    try {
+      const v = JSON.parse(localStorage.getItem(KEY));
+      return Array.isArray(v) ? v.filter((t) => typeof t === "string") : [];
+    } catch {
+      return [];
+    }
+  };
+  const save = (list) => {
+    try { localStorage.setItem(KEY, JSON.stringify(list.slice(0, 30))); } catch {}
+  };
+  const makeCard = (text) => {
+    const li = document.createElement("li");
+    li.className = "wall__card wall__card--mine";
+    li.textContent = text; // XSS yok: düz metin
+    return li;
+  };
+
+  /* Önceki ziyaretin cevapları duvarın başına */
+  load().forEach((t) => wall.prepend(makeCard(t)));
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = (input.value || "").trim().replace(/\s+/g, " ");
+    if (text.length < 3) {
+      hint.textContent = "Birkaç kelime yaz — eşiğin bu kadar kısa olamaz.";
+      return;
+    }
+    const list = load();
+    list.unshift(text);
+    save(list);
+    const li = makeCard(text);
+    wall.prepend(li);
+    if (!reduced && window.gsap) {
+      gsap.from(li, { y: 18, opacity: 0, rotate: -2, duration: 0.5, ease: "power3.out" });
+    }
+    input.value = "";
+    hint.textContent = "Asıldı. 17 Ekim'de bu çizgiyi birlikte geçiyoruz.";
+  });
+})();

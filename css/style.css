@@ -455,8 +455,8 @@ body.menu-open { overflow: hidden; }
   font-size: var(--t-hero-name);
   letter-spacing: 0.005em;
   color: var(--c-white);
-  /* pozitif boşluk: Ü'nün noktaları üstteki "TEDx"in x'ine değmesin */
-  margin-top: 0.03em;
+  /* küçük harf düzeninde satırlar sıkı dursun (büyük harf boşluğu kaldırıldı) */
+  margin-top: -0.06em;
 }
 
 .hero__row {
@@ -2377,7 +2377,7 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   .hero__eyebrow b { color: var(--c-red); }
   /* Kenardan kenara tipografi; TEDX hafif bindirilmiş */
   .hero__title { display: flex; flex-direction: column; align-items: center; }
-  .hero__tedx { font-size: 9.5vw; margin-bottom: -1.4vw; }
+  .hero__tedx { font-size: 9.5vw; margin-bottom: -3vw; }
   .hero__name { font-size: 24.5vw; letter-spacing: -0.012em; line-height: 0.98; }
   .hero__row { margin-top: 1.1rem; justify-content: center; }
   .hero__lead { flex-direction: column; align-items: center; gap: 1.2rem; }
@@ -2609,3 +2609,255 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   .imlecx { display: none; }
 }
 
+
+/* ============================================================
+   v49: YIL ROZETLERİ + KARELER + EŞİK DUVARI + HERO SPONSOR
+   ============================================================ */
+
+/* --- Yıl ayrımı: 2026 çipleri, 2025 arşiv görünümü --- */
+.spk-card__year {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  background: var(--c-red);
+  color: var(--c-white);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 0.3rem 0.55rem 0.26rem;
+  border-radius: 2px;
+}
+.hl-card__media img {
+  filter: grayscale(1);
+  transition: filter 0.5s ease;
+}
+.hl-card:hover .hl-card__media img,
+.hl-card:focus-visible .hl-card__media img { filter: grayscale(0); }
+.hl-card__year {
+  display: inline-block;
+  width: fit-content;
+  background: var(--c-red);
+  color: var(--c-white);
+  padding: 0.28rem 0.55rem 0.24rem;
+  border-radius: 2px;
+}
+
+/* --- Hero: çift CTA + ana partner + sponsor linki --- */
+.hero__cta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+.hp-main {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.hp-main__tag {
+  position: absolute;
+  top: -0.62rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-style: normal;
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-red);
+  white-space: nowrap;
+}
+.hp-logo-img--main {
+  height: 3.4rem;
+  max-width: 13rem;
+  opacity: 1;
+  box-shadow: 0 0 0 1px var(--c-red);
+}
+.hp-logo--sponsor {
+  color: var(--c-red);
+  opacity: 0.95;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: opacity 0.3s ease;
+}
+.hp-logo--sponsor i {
+  font-style: normal;
+  transition: transform 0.3s ease;
+}
+.hp-logo--sponsor:hover { opacity: 1; }
+.hp-logo--sponsor:hover i { transform: translateX(4px); }
+
+/* --- KARELER: 2025 galerisi --- */
+.snaps {
+  background: var(--c-black);
+  padding-block: var(--sec-y);
+  border-top: 1px solid var(--line-light);
+}
+.snaps__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: clamp(9rem, 16vw, 15rem);
+  gap: clamp(0.6rem, 1.4vw, 1.1rem);
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+.snaps__item {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #1d1d1d;
+  border-radius: 4px;
+}
+.snaps__item--tall { grid-row: span 2; }
+.snaps__item--wide { grid-column: span 2; }
+.snaps__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  transform: scale(1.015);
+  transition: filter 0.5s ease, transform 0.7s ease;
+}
+.snaps__item:hover img,
+.snaps__item:focus-visible img {
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+.snaps__item figcaption,
+.snaps__cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.6rem 0.9rem 0.7rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.snaps__item:hover figcaption,
+.snaps__item:hover .snaps__cap,
+.snaps__item:focus-visible .snaps__cap { opacity: 1; transform: none; }
+.snaps__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  color: var(--c-white);
+}
+.snaps__play::before {
+  content: "";
+  position: absolute;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  background: var(--c-red);
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+.snaps__item--video:hover .snaps__play::before { transform: scale(1.12); }
+
+/* --- EŞİK DUVARI: interaktif soru --- */
+.wall {
+  background: var(--c-ink);
+  padding-block: var(--sec-y);
+  border-top: 1px solid var(--line-light);
+}
+.wall__form {
+  display: flex;
+  gap: 0.7rem;
+  max-width: 34rem;
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+}
+.wall__form input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line-light);
+  border-radius: 3px;
+  color: var(--c-white);
+  font: inherit;
+  font-size: 0.92rem;
+  padding: 0.85rem 1rem;
+  transition: border-color 0.3s ease;
+}
+.wall__form input:focus {
+  outline: none;
+  border-color: var(--c-red);
+}
+.wall__form input::placeholder { color: rgba(255, 255, 255, 0.35); }
+.wall__hint {
+  min-height: 1.4rem;
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+.wall__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: clamp(0.8rem, 1.6vw, 1.2rem);
+  margin-top: clamp(1.6rem, 3.5vw, 2.6rem);
+}
+.wall__card {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--line-light);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  position: relative;
+  transform: rotate(-0.6deg);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.wall__card::before {
+  content: "“";
+  display: block;
+  font-family: var(--f-serif);
+  font-size: 1.6rem;
+  line-height: 0.6;
+  color: var(--c-red);
+  margin-bottom: 0.55rem;
+}
+.wall__card:nth-child(even) { transform: rotate(0.7deg); }
+.wall__card:hover { transform: rotate(0) scale(1.02); border-color: rgba(235, 0, 40, 0.55); }
+.wall__card--red {
+  background: var(--c-red);
+  border-color: var(--c-red);
+  color: var(--c-white);
+}
+.wall__card--red::before { color: var(--c-white); }
+.wall__card--paper {
+  background: var(--c-paper);
+  border-color: var(--c-paper);
+  color: var(--c-black);
+}
+.wall__card--mine { border-color: var(--c-red); }
+
+/* --- Yeni bölümler: responsive --- */
+@media (max-width: 900px) {
+  .snaps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: clamp(8rem, 24vw, 12rem); }
+}
+@media (max-width: 700px) {
+  .wall__form { flex-direction: column; }
+  .wall__form .btn { align-self: flex-start; }
+  .wall__grid { grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
+  .hp-logo-img--main { height: 2.7rem; max-width: 10rem; }
+}
+@media (max-width: 480px) {
+  .snaps__grid { grid-template-columns: 1fr; grid-auto-rows: 11rem; }
+  .snaps__item--wide { grid-column: auto; }
+  .hero__cta-row { justify-content: center; }
+}
+
+/* --- İmleç: kırmızı zeminlerde görünürlük kasası --- */
+.imlecx__x .imlecx__casing {
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 17;
+}

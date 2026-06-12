@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css?v=48" />
+  <link rel="stylesheet" href="css/style.css?v=49" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -76,8 +76,8 @@
     <nav class="site-nav" aria-label="Ana menü">
       <a href="#tema">Tema</a>
       <a href="#konusmacilar">Konuşmacılar</a>
+      <a href="#sahneden">Sahneden</a>
       <a href="#program">Program</a>
-      <a href="#deneyim">Deneyim</a>
       <a href="#ekip">Ekip</a>
       <a href="#iletisim">İletişim</a>
     </nav>
@@ -98,13 +98,14 @@
       <a href="#tema"><i>01</i><span>Tema</span></a>
       <a href="#konusmacilar"><i>02</i><span>Konuşmacılar</span></a>
       <a href="#sahneden"><i>03</i><span>Sahneden</span></a>
-      <a href="#program"><i>04</i><span>Program</span></a>
-      <a href="#deneyim"><i>05</i><span>Deneyim</span></a>
-      <a href="#hikaye"><i>06</i><span>Hikayemiz</span></a>
-      <a href="#ekip"><i>07</i><span>Ekip</span></a>
-      <a href="#basvuru"><i>08</i><span>Başvurular</span></a>
-      <a href="#iletisim"><i>09</i><span>İletişim</span></a>
-      <a href="#bilet" class="is-red"><i>10</i><span>Biletler</span></a>
+      <a href="#kareler"><i>04</i><span>Kareler</span></a>
+      <a href="#program"><i>05</i><span>Program</span></a>
+      <a href="#esigin-ne"><i>06</i><span>Eşik Duvarı</span></a>
+      <a href="#hikaye"><i>07</i><span>Hikayemiz</span></a>
+      <a href="#ekip"><i>08</i><span>Ekip</span></a>
+      <a href="#basvuru"><i>09</i><span>Başvurular</span></a>
+      <a href="#iletisim"><i>10</i><span>İletişim</span></a>
+      <a href="#bilet" class="is-red"><i>11</i><span>Biletler</span></a>
     </nav>
     <div class="menu__foot">
       <p>17.10.2026 — Gültepe, Batman</p>
@@ -132,17 +133,27 @@
             <p class="hero__theme">
               <span class="mask"><span class="mask__inner"><em>Eşik</em> — olan ile olabilecek arasında,<br/>tam çizginin üstünde duruyoruz.</span></span>
             </p>
-            <a href="#bilet" class="btn btn--red hero__cta" data-magnetic>
-              <span class="btn__label">Yerini Ayırt</span>
-            </a>
+            <div class="hero__cta-row">
+              <a href="#bilet" class="btn btn--red hero__cta" data-magnetic>
+                <span class="btn__label">Yerini Ayırt</span>
+              </a>
+              <a href="basvuru.html?tip=sponsor" class="btn btn--ghost hero__cta hero__cta--sponsor" data-magnetic>
+                <span class="btn__label">Sponsor Ol</span>
+              </a>
+            </div>
             <div class="hero__partners">
               <span class="hero__partners-label">Destekleyenler</span>
               <div class="hero__partners-row">
+                <span class="hp-main">
+                  <i class="hp-main__tag">Ana Partner</i>
+                  <img class="hp-logo-img hp-logo-img--main" src="img/sponsors/ahmet-dinc-vakfi.svg?v=37" alt="Ahmet Dinç Vakfı — ana partner" height="38" loading="lazy" />
+                </span>
                 <img class="hp-logo-img" src="img/sponsors/sponsor-2.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
                 <img class="hp-logo-img" src="img/sponsors/sponsor-3.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
                 <img class="hp-logo-img" src="img/sponsors/sponsor-4.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
                 <img class="hp-logo-img" src="img/sponsors/sponsor-5.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
-                <a class="hp-logo hp-logo--all" href="#partnerler">Tümü →</a>
+                <a class="hp-logo hp-logo--sponsor" href="basvuru.html?tip=sponsor">Sponsor Ol <i>→</i></a>
+                <a class="hp-logo hp-logo--all" href="#partnerler">Tümü</a>
               </div>
             </div>
           </div>
@@ -190,11 +201,15 @@
           <span class="hcard__label">Destekleyenler</span>
           <div class="hcard__sponsors">
             <div class="hcard__sponsors-row">
+              <span class="hp-main">
+                <i class="hp-main__tag">Ana Partner</i>
+                <img class="hp-logo-img hp-logo-img--main" src="img/sponsors/ahmet-dinc-vakfi.svg?v=37" alt="Ahmet Dinç Vakfı — ana partner" height="34" loading="lazy" />
+              </span>
               <img class="hp-logo-img" src="img/sponsors/sponsor-2.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
               <img class="hp-logo-img" src="img/sponsors/sponsor-3.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
               <img class="hp-logo-img" src="img/sponsors/sponsor-4.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
               <img class="hp-logo-img" src="img/sponsors/sponsor-5.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
-              <a class="hp-logo hp-logo--all" href="#partnerler">Tümü →</a>
+              <a class="hp-logo hp-logo--sponsor" href="basvuru.html?tip=sponsor">Sponsor Ol →</a>
             </div>
           </div>
         </div>
@@ -271,31 +286,46 @@
       </div>
     </section>
 
-    <!-- ===================== KELİMELER (PARÇACIK İNTERLÜDÜ) ===================== -->
-    <section class="ptext" id="kelimeler" data-ptext aria-label="Değer kelimeleri — parçacık animasyonu">
-      <div class="ptext__glow" aria-hidden="true"></div>
-      <canvas class="ptext__canvas" data-pt-canvas aria-hidden="true"></canvas>
-      <div class="ptext__vignette" aria-hidden="true"></div>
-
-      <!-- WebGL/CDN yoksa statik başlık -->
-      <p class="ptext__fallback" aria-hidden="true">EŞİK</p>
-
-      <p class="ptext__kicker">Bizi bir araya getiren kelimeler</p>
-
-      <div class="ptext__hud">
-        <span class="ptext__dots" data-pt-dots aria-hidden="true"></span>
-        <span class="ptext__caption" data-pt-caption>CESARET</span>
-        <span class="ptext__scroll" aria-hidden="true">Kaydır<i></i></span>
+    <!-- ===================== KIRILMA (İNTERLÜD) ===================== -->
+    <section class="kirilma" id="kirilma" data-kirilma aria-label="Kırılma — interaktif cam">
+      <!-- camın ALTINDAKİ içerik (z-0) -->
+      <div class="kirilma__content">
+        <div class="kirilma__vignette" aria-hidden="true"></div>
+        <p class="kirilma__kicker"><b>TED<span class="tedx-x">x</span></b>Gültepe · 17 EKİM 2026</p>
+        <p class="kirilma__word" aria-label="Eşik">EŞİK</p>
+        <p class="kirilma__line">Her <em>kırılma</em>, yeni bir başlangıçtır.</p>
+        <p class="kirilma__desc">
+          Kalıpların kırıldığı yerde yeni fikirler doğar. Camı kır,
+          eşiğin öbür tarafını gör.
+        </p>
+        <span class="kirilma__rule" aria-hidden="true"></span>
+        <a href="#bilet" class="kirilma__cta" data-no-shatter>Eşiği Geç <i>→</i></a>
       </div>
 
-      <p class="sr-only" data-pt-live aria-live="polite">Aktif kelime: CESARET</p>
+      <!-- cam (z-10) + dökülen parçalar/imleç (z-20) -->
+      <canvas class="kirilma__bg" data-kirilma-bg aria-hidden="true"></canvas>
+      <canvas class="kirilma__fx" data-kirilma-fx aria-hidden="true"></canvas>
+
+      <!-- üst kırmızı çizgi + alt overlay (z-30) -->
+      <span class="kirilma__topline" aria-hidden="true"></span>
+      <div class="kirilma__hud">
+        <div class="kirilma__progress">
+          <div class="kirilma__progress-head">
+            <span data-kr-label>İlerleme</span>
+            <span data-kr-pct>%0</span>
+          </div>
+          <div class="kirilma__progress-track"><i data-kr-bar></i></div>
+        </div>
+        <p class="kirilma__hint">Tıkla ve camı kır</p>
+        <button type="button" class="kirilma__all" data-kr-all data-no-shatter>Hepsini kır →</button>
+      </div>
     </section>
 
     <!-- ===================== KONUŞMACILAR ===================== -->
     <section class="speakers" id="konusmacilar">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-label sec-label--light"><i></i>02 — Konuşmacılar</span>
+          <span class="sec-label sec-label--light"><i></i>02 — Konuşmacılar · 2026</span>
           <h2 class="sec-title" data-split>Eşikteki<br/><em>sekiz ses.</em></h2>
           <p class="sec-note">2026 sahnesinin kadrosu. Her konuşma: 12 dakika, not yok, geri dönüş yok.</p>
         </header>
@@ -304,6 +334,7 @@
         <ul class="spk-grid">
           <li class="spk-card" data-reveal>
             <figure class="spk-card__media">
+              <span class="spk-card__year">2026</span>
               <img src="img/speakers/mehmet-hilmi-eren.png" alt="Mehmet Hilmi Eren'in portresi" width="492" height="875" loading="lazy" />
             </figure>
             <div class="spk-card__body">
@@ -316,6 +347,7 @@
 
           <li class="spk-card" data-reveal>
             <figure class="spk-card__media">
+              <span class="spk-card__year">2026</span>
               <img src="img/speakers/aysegul-aksu.png" alt="Ayşegül Aksu'nun portresi" width="492" height="875" loading="lazy" />
             </figure>
             <div class="spk-card__body">
@@ -328,6 +360,7 @@
 
           <li class="spk-card" data-reveal>
             <figure class="spk-card__media">
+              <span class="spk-card__year">2026</span>
               <img src="img/speakers/serhan-yilmaz.png" alt="Dr. Serhan Yılmaz'ın portresi" width="492" height="875" loading="lazy" />
             </figure>
             <div class="spk-card__body">
@@ -340,6 +373,7 @@
 
           <li class="spk-card" data-reveal>
             <figure class="spk-card__media">
+              <span class="spk-card__year">2026</span>
               <img src="img/speakers/husnu-dal.png" alt="Prof. Dr. Hüsnü Dal'ın portresi" width="492" height="875" loading="lazy" />
             </figure>
             <div class="spk-card__body">
@@ -352,6 +386,7 @@
 
           <li class="spk-card" data-reveal>
             <figure class="spk-card__media">
+              <span class="spk-card__year">2026</span>
               <img src="img/speakers/ahmet-gorguc.png" alt="Ahmet Görgüç'ün portresi" width="492" height="875" loading="lazy" />
             </figure>
             <div class="spk-card__body">
@@ -364,6 +399,7 @@
 
           <li class="spk-card" data-reveal>
             <figure class="spk-card__media">
+              <span class="spk-card__year">2026</span>
               <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80&sat=-100" alt="Hakan Yıldız'ın portresi" width="700" height="875" loading="lazy" />
             </figure>
             <div class="spk-card__body">
@@ -376,6 +412,7 @@
 
           <li class="spk-card" data-reveal>
             <figure class="spk-card__media">
+              <span class="spk-card__year">2026</span>
               <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80&sat=-100" alt="Derya Güneş'in portresi" width="700" height="875" loading="lazy" />
             </figure>
             <div class="spk-card__body">
@@ -388,6 +425,7 @@
 
           <li class="spk-card" data-reveal>
             <figure class="spk-card__media">
+              <span class="spk-card__year">2026</span>
               <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=700&q=80&sat=-100" alt="Onur Şahin'in portresi" width="700" height="875" loading="lazy" />
             </figure>
             <div class="spk-card__body">
@@ -404,7 +442,7 @@
     <!-- ===================== SAHNEDEN (GEÇMİŞ KONUŞMALAR) ===================== -->
     <section class="hl" id="sahneden">
       <div class="hl__head wrap">
-        <span class="sec-label sec-label--light"><i></i>03 — Sahneden</span>
+        <span class="sec-label sec-label--light"><i></i>03 — Sahneden · 2025 Arşivi</span>
         <h2 class="sec-title" data-split>Tepeden inen<br/><em>sözler.</em></h2>
         <p class="sec-note">2025 sahnesinden beş konuşma — karta tıklayın, video sayfadan ayrılmadan açılsın. Yana kaydırın.</p>
       </div>
@@ -484,11 +522,74 @@
       </div>
     </section>
 
+    <!-- ===================== KELİMELER (PARÇACIK İNTERLÜDÜ) ===================== -->
+    <section class="ptext" id="kelimeler" data-ptext aria-label="Değer kelimeleri — parçacık animasyonu">
+      <div class="ptext__glow" aria-hidden="true"></div>
+      <canvas class="ptext__canvas" data-pt-canvas aria-hidden="true"></canvas>
+      <div class="ptext__vignette" aria-hidden="true"></div>
+
+      <!-- WebGL/CDN yoksa statik başlık -->
+      <p class="ptext__fallback" aria-hidden="true">EŞİK</p>
+
+      <p class="ptext__kicker">Bizi bir araya getiren kelimeler</p>
+
+      <div class="ptext__hud">
+        <span class="ptext__dots" data-pt-dots aria-hidden="true"></span>
+        <span class="ptext__caption" data-pt-caption>CESARET</span>
+        <span class="ptext__scroll" aria-hidden="true">Kaydır<i></i></span>
+      </div>
+
+      <p class="sr-only" data-pt-live aria-live="polite">Aktif kelime: CESARET</p>
+    </section>
+
+    <!-- ===================== KARELER (2025 GALERİSİ) ===================== -->
+    <section class="snaps" id="kareler">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-label sec-label--light"><i></i>04 — Kareler · 2025</span>
+          <h2 class="sec-title" data-split>Tepenin<br/><em>hafızası.</em></h2>
+          <p class="sec-note">Geçen yılın salonundan ve sahne arkasından kareler. Karta dokun — renklensin.</p>
+        </header>
+
+        <div class="snaps__grid">
+          <figure class="snaps__item snaps__item--tall" data-reveal>
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80&sat=-100" alt="2025 etkinliğinde salonun genel görünümü" width="800" height="1067" loading="lazy" />
+            <figcaption>Kapılar açılırken</figcaption>
+          </figure>
+          <figure class="snaps__item" data-reveal>
+            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=900&q=80&sat=-100" alt="2025 sahnesinde bir konuşmacı" width="900" height="600" loading="lazy" />
+            <figcaption>İlk konuşma, ilk alkış</figcaption>
+          </figure>
+          <a class="snaps__item snaps__item--video" href="https://www.youtube.com/watch?v=_sVh0lAwFoo" target="_blank" rel="noopener" data-video="_sVh0lAwFoo" data-reveal>
+            <img src="https://i.ytimg.com/vi/_sVh0lAwFoo/hqdefault.jpg" alt="2025 sahnesinden video görüntüleri" width="800" height="600" loading="lazy" />
+            <span class="snaps__play" aria-hidden="true">▶︎</span>
+            <span class="snaps__cap">Sahneden görüntüler — izle</span>
+          </a>
+          <figure class="snaps__item" data-reveal>
+            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=900&q=80&sat=-100" alt="Sahne ışıkları altında salon" width="900" height="600" loading="lazy" />
+            <figcaption>Işıklar tepeye vurdu</figcaption>
+          </figure>
+          <figure class="snaps__item snaps__item--wide" data-reveal>
+            <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=80&sat=-100" alt="Etkinlik kalabalığı bir arada" width="1200" height="675" loading="lazy" />
+            <figcaption>Aramızda kalmadı — tepeye taştı</figcaption>
+          </figure>
+          <figure class="snaps__item" data-reveal>
+            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80&sat=-100" alt="Alkışlayan izleyiciler" width="900" height="600" loading="lazy" />
+            <figcaption>Son sözün alkışı</figcaption>
+          </figure>
+          <figure class="snaps__item snaps__item--tall" data-reveal>
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80&sat=-100" alt="Etkinlik sonrası kutlama anı" width="800" height="1067" loading="lazy" />
+            <figcaption>Perde indikten sonra</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== PROGRAM ===================== -->
     <section class="schedule" id="program">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-label"><i></i>04 — Program</span>
+          <span class="sec-label"><i></i>05 — Program</span>
           <h2 class="sec-title" data-split>Tek cumartesi.<br/><em>Çizgide altı saat.</em></h2>
           <p class="sec-note">17 Ekim 2026 Cumartesi — kapılar 09:00'da, kalpler 10:00'da açılır.</p>
         </header>
@@ -554,6 +655,8 @@
       </div>
     </section>
 
+    <!-- DENEYİM ŞİMDİLİK GİZLİ: template render edilmez; geri açmak için template etiketlerini sil -->
+    <template data-gizli="deneyim">
     <!-- ===================== DENEYİM ===================== -->
     <section class="exp" id="deneyim">
       <div class="wrap">
@@ -629,11 +732,42 @@
       </div>
     </section>
 
+    </template>
+
+    <!-- ===================== EŞİK DUVARI (İNTERAKTİF SORU) ===================== -->
+    <section class="wall" id="esigin-ne">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-label sec-label--light"><i></i>06 — Eşik Duvarı</span>
+          <h2 class="sec-title" data-split>Senin eşiğin<br/><em>ne?</em></h2>
+          <p class="sec-note">Herkes bir çizginin önünde duruyor. Seninkini yaz, duvara as — 17 Ekim'de birlikte geçelim.</p>
+        </header>
+
+        <form class="wall__form" data-wall-form>
+          <label class="sr-only" for="wall-input">Eşiğini yaz</label>
+          <input id="wall-input" type="text" maxlength="120" placeholder="Örn. İlk kez sahneye çıkmak" autocomplete="off" />
+          <button type="submit" class="btn btn--red btn--sm" data-magnetic><span class="btn__label">Duvara as →</span></button>
+        </form>
+        <p class="wall__hint" data-wall-hint aria-live="polite"></p>
+
+        <ul class="wall__grid" data-wall>
+          <li class="wall__card" data-reveal>İşimi bırakıp kendi atölyemi açmak</li>
+          <li class="wall__card wall__card--red" data-reveal>İlk kez mikrofona dokunmak</li>
+          <li class="wall__card wall__card--paper" data-reveal>Babamla yarım kalan konuşmayı bitirmek</li>
+          <li class="wall__card" data-reveal>Batman'dan ayrılmadan dünyaya açılmak</li>
+          <li class="wall__card wall__card--paper" data-reveal>Yüksek sesle "hayır" diyebilmek</li>
+          <li class="wall__card wall__card--red" data-reveal>Fikrimi koca bir salonun önünde söylemek</li>
+          <li class="wall__card" data-reveal>Kırkımda yeniden okula dönmek</li>
+          <li class="wall__card wall__card--paper" data-reveal>Korktuğum şeyi her gün bir kez yapmak</li>
+        </ul>
+      </div>
+    </section>
+
     <!-- ===================== HİKAYEMİZ ===================== -->
     <section class="story" id="hikaye">
       <div class="wrap story__grid">
         <div class="story__main">
-          <span class="sec-label"><i></i>06 — Hikayemiz</span>
+          <span class="sec-label"><i></i>07 — Hikayemiz</span>
           <h2 class="sec-title" data-split>Bir sınıfta başladık,<br/><em>bir tepeyi seslendirdik.</em></h2>
 
           <p class="story__lead" data-words>
@@ -681,46 +815,11 @@
       </div>
     </section>
 
-    <!-- ===================== KIRILMA (İNTERLÜD) ===================== -->
-    <section class="kirilma" id="kirilma" data-kirilma aria-label="Kırılma — interaktif cam">
-      <!-- camın ALTINDAKİ içerik (z-0) -->
-      <div class="kirilma__content">
-        <div class="kirilma__vignette" aria-hidden="true"></div>
-        <p class="kirilma__kicker"><b>TED<span class="tedx-x">x</span></b>Gültepe · 17 EKİM 2026</p>
-        <p class="kirilma__word" aria-label="Eşik">EŞİK</p>
-        <p class="kirilma__line">Her <em>kırılma</em>, yeni bir başlangıçtır.</p>
-        <p class="kirilma__desc">
-          Kalıpların kırıldığı yerde yeni fikirler doğar. Camı kır,
-          eşiğin öbür tarafını gör.
-        </p>
-        <span class="kirilma__rule" aria-hidden="true"></span>
-        <a href="#bilet" class="kirilma__cta" data-no-shatter>Eşiği Geç <i>→</i></a>
-      </div>
-
-      <!-- cam (z-10) + dökülen parçalar/imleç (z-20) -->
-      <canvas class="kirilma__bg" data-kirilma-bg aria-hidden="true"></canvas>
-      <canvas class="kirilma__fx" data-kirilma-fx aria-hidden="true"></canvas>
-
-      <!-- üst kırmızı çizgi + alt overlay (z-30) -->
-      <span class="kirilma__topline" aria-hidden="true"></span>
-      <div class="kirilma__hud">
-        <div class="kirilma__progress">
-          <div class="kirilma__progress-head">
-            <span data-kr-label>İlerleme</span>
-            <span data-kr-pct>%0</span>
-          </div>
-          <div class="kirilma__progress-track"><i data-kr-bar></i></div>
-        </div>
-        <p class="kirilma__hint">Tıkla ve camı kır</p>
-        <button type="button" class="kirilma__all" data-kr-all data-no-shatter>Hepsini kır →</button>
-      </div>
-    </section>
-
     <!-- ===================== ORGANİZASYON EKİBİ ===================== -->
     <section class="team" id="ekip">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-label sec-label--light"><i></i>07 — Ekip</span>
+          <span class="sec-label sec-label--light"><i></i>08 — Ekip</span>
           <h2 class="sec-title" data-split>Bu tepeyi<br/><em>taşıyanlar.</em></h2>
           <p class="sec-note">Sahnede 12 dakika; sahne arkasında 12 ay. TED<span class="tedx-x">x</span>Gültepe'yi dört kişilik gönüllü bir çekirdek ekip düzenler.</p>
         </header>
@@ -775,7 +874,7 @@
     <section class="apply" id="basvuru">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-label sec-label--light"><i></i>08 — Başvurular</span>
+          <span class="sec-label sec-label--light"><i></i>09 — Başvurular</span>
           <h2 class="sec-title" data-split>Eşikte<br/><em>yerini al.</em></h2>
           <p class="sec-note">Bu sahne mahallenin. Gönüllü ol, destekçi ol ya da fikrini sahneye taşı.</p>
         </header>
@@ -809,7 +908,7 @@
     <section class="sponsors" id="partnerler">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-label"><i></i>09 — Partnerler</span>
+          <span class="sec-label"><i></i>10 — Partnerler</span>
           <h2 class="sec-title" data-split>Bu tepeye<br/><em>birlikte çıkıyoruz.</em></h2>
         </header>
 
@@ -894,7 +993,7 @@
     <section class="contact" id="iletisim">
       <div class="wrap contact__grid">
         <div class="contact__head">
-          <span class="sec-label sec-label--light"><i></i>10 — İletişim</span>
+          <span class="sec-label sec-label--light"><i></i>11 — İletişim</span>
           <h2 class="sec-title" data-split>Bize<br/><em>yazın.</em></h2>
           <address class="contact__addr" data-reveal>
             <strong>Gültepe Kültür Merkezi</strong><br/>
@@ -1009,8 +1108,8 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=39" defer></script>
-  <script src="js/imlec.js?v=39" defer></script>
+  <script src="js/main.js?v=40" defer></script>
+  <script src="js/imlec.js?v=40" defer></script>
   <script src="js/kirilma.js?v=40" defer></script>
   <script type="module" src="js/hero3d.js?v=36"></script>
   <script type="module" src="js/parcacik.js?v=42"></script>

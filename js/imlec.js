@@ -23,6 +23,7 @@
   box.innerHTML =
     '<i class="imlecx__halo"></i>' +
     '<svg class="imlecx__x" viewBox="0 0 64 64">' +
+    '<path class="imlecx__casing" d="M16 16 48 48M48 16 16 48"/>' +
     '<path d="M16 16 48 48M48 16 16 48"/></svg>';
   document.body.appendChild(box);
   const xEl = box.querySelector(".imlecx__x");
@@ -31,7 +32,7 @@
 
   /* ---------- durum ---------- */
   const pos = { x: innerWidth / 2, y: innerHeight / 2 };
-  const cur = { x: pos.x, y: pos.y };
+  let vel = 0;         // yatay hız (eğim için; konum takibi anlık)
   let tilt = 0;        // hız bazlı eğim (derece)
   let spin = 0;        // tıklama dönüşü — mevcut
   let spinT = 0;       // tıklama dönüşü — hedef
@@ -67,11 +68,8 @@
     (e) => {
       pos.x = e.clientX;
       pos.y = e.clientY;
-      if (!shown) {
-        shown = true;
-        cur.x = pos.x;
-        cur.y = pos.y;
-      }
+      vel = e.movementX || 0;
+      if (!shown) shown = true;
       retarget(e.target);
     },
     { passive: true }
@@ -87,21 +85,20 @@
     hidden = true;
   });
 
-  /* ---------- döngü: yalnız transform/opacity ---------- */
+  /* ---------- döngü: yalnız transform/opacity ----------
+     Konum takibi ANLIK (gecikme yok — gerçek imleç hissi);
+     yaylı his yalnız eğim/dönüş/ölçekte kalır. */
   function frame() {
-    const dxv = pos.x - cur.x;
-    cur.x += dxv * 0.5;
-    cur.y += (pos.y - cur.y) * 0.5;
-
     /* hız → yaylı eğim; durunca sıfıra süzülür */
-    const tiltTarget = Math.max(-18, Math.min(18, dxv * 0.6));
-    tilt += (tiltTarget - tilt) * 0.14;
+    const tiltTarget = Math.max(-18, Math.min(18, vel * 1.1));
+    vel *= 0.8;
+    tilt += (tiltTarget - tilt) * 0.18;
     spin += (spinT - spin) * 0.16;
     scale += (scaleT - scale) * 0.18;
     halo += (haloT - halo) * 0.12;
     op += ((shown && !hidden ? 1 : 0) - op) * 0.35;
 
-    box.style.transform = `translate(${cur.x - SIZE / 2}px, ${cur.y - SIZE / 2}px)`;
+    box.style.transform = `translate(${pos.x - SIZE / 2}px, ${pos.y - SIZE / 2}px)`;
     box.style.opacity = op.toFixed(3);
     xEl.style.transform = `rotate(${(tilt + spin).toFixed(2)}deg) scale(${scale.toFixed(3)})`;
     haloEl.style.opacity = (halo * op).toFixed(3);
