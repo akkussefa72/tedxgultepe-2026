@@ -2643,38 +2643,15 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   border-radius: 2px;
 }
 
-/* --- Hero: çift CTA + ana partner + sponsor linki --- */
+/* --- Hero: CTA satırı + sponsor linki --- */
 .hero__cta-row {
   display: flex;
   align-items: center;
   gap: 0.9rem;
   flex-wrap: wrap;
 }
-.hp-main {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  margin-top: 0.5rem;
-}
-.hp-main__tag {
-  position: absolute;
-  top: -0.62rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-style: normal;
-  font-size: 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--c-red);
-  white-space: nowrap;
-}
-.hp-logo-img--main {
-  height: 3.4rem;
-  max-width: 13rem;
-  opacity: 1;
-  box-shadow: 0 0 0 1px var(--c-red);
-}
+/* Sponsor Ol butonu yalnız mobil hero düzeninde görünür */
+.hero__cta--sponsor { display: none; }
 .hp-logo--sponsor {
   color: var(--c-red);
   opacity: 0.95;
@@ -2848,7 +2825,7 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   .wall__form { flex-direction: column; }
   .wall__form .btn { align-self: flex-start; }
   .wall__grid { grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
-  .hp-logo-img--main { height: 2.7rem; max-width: 10rem; }
+  .hero__cta--sponsor { display: inline-flex; }
 }
 @media (max-width: 480px) {
   .snaps__grid { grid-template-columns: 1fr; grid-auto-rows: 11rem; }
