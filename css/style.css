@@ -224,10 +224,12 @@ address { font-style: normal; }
   100% { transform: rotate(360deg); }
 }
 .loader__word {
-  font-family: var(--f-display);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-size: clamp(1.8rem, 5vw, 3.2rem);
   letter-spacing: 0.04em;
 }
+.loader__word b { font-weight: 700; color: var(--c-red); }
 .loader__count {
   position: absolute;
   bottom: 1.4rem; right: var(--pad-x);
@@ -282,7 +284,7 @@ address { font-style: normal; }
   letter-spacing: 0;
 }
 .logo__word { display: inline-flex; align-items: baseline; }
-.logo__tedx { color: var(--c-red); }
+.logo__tedx { color: var(--c-red); font-weight: 700; }
 .logo__place { color: var(--c-white); }
 .logo__tag {
   font-family: var(--f-sans);
@@ -446,7 +448,8 @@ body.menu-open { overflow: hidden; }
 .hero__tedx {
   font-size: var(--t-hero-tedx);
   color: var(--c-red);
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 .hero__name {
   font-size: var(--t-hero-name);
@@ -921,10 +924,11 @@ body.menu-open { overflow: hidden; }
 .kirilma__kicker {
   margin-bottom: 2rem;
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.5em;
   color: rgba(255, 255, 255, 0.55);
 }
+.kirilma__kicker b { font-weight: 700; }
 .kirilma__word {
   font-family: var(--f-display);
   font-size: clamp(3.4rem, 14vw, 12rem);
@@ -1659,12 +1663,13 @@ body.menu-open { overflow: hidden; }
 }
 .ptext__dots i.is-on { width: 2.5rem; background: var(--c-red); }
 .ptext__caption {
-  font-family: var(--f-display);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-size: 0.9rem;
   letter-spacing: 0.4em;
   color: rgba(255, 255, 255, 0.7);
 }
-.ptext__caption b { font-weight: 400; color: var(--c-red); }
+.ptext__caption b { font-weight: 700; color: var(--c-red); }
 .ptext__scroll {
   display: inline-flex;
   flex-direction: column;
@@ -2189,7 +2194,7 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 
 .footer__wordmark {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
+  font-weight: 700;
   font-size: clamp(2.5rem, 10vw, 10rem);
   letter-spacing: -0.01em;
   line-height: 0.9;
@@ -2198,6 +2203,7 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   margin-left: -0.04em;
 }
 .footer__wordmark span:not(.tedx-x) {
+  font-weight: 300;
   color: transparent;
   -webkit-text-stroke: 2px rgba(255, 255, 255, 0.35);
 }

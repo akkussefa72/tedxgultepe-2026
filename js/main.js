@@ -77,8 +77,8 @@
     const countEl = $("[data-loader-count]");
     const wordEl = $("[data-loader-word]");
     const words = ["Gültepe", "EŞİK", "BATMAN", "TEDxGültepe"];
-    /* TEDx marka yazımı: x küçük ve üst simge */
-    const fmtWord = (w) => w.replace("TEDx", 'TED<span class="tedx-x">x</span>');
+    /* TEDx marka yazımı: TEDx kalın (resmî logo), x küçük ve üst simge */
+    const fmtWord = (w) => w.replace("TEDx", '<b>TED<span class="tedx-x">x</span></b>');
     const num = { v: 0 };
     let wi = 0;
 

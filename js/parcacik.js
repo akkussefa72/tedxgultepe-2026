@@ -53,8 +53,12 @@ const fragmentShader = /* glsl */ `
   }
 `;
 
+/* Resmî logo yazımı için Helvetica: TED + x kalın, kalanı ince */
+const BRAND_FONT = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+
 /* TEDx marka yazımı: kelimedeki küçük "x"i daha küçük puntoyla ve
-   yukarı kaydırarak (üst simge) çizer; x yoksa normal fillText */
+   yukarı kaydırarak (üst simge) çizer; x yoksa normal fillText.
+   Marka kelimesi resmî logo görünümüyle: TED+x kalın (700), Gültepe ince (300) */
 function fillWordBrand(ctx, text, cx, cy, fontSize, fontFamily) {
   const xi = text.indexOf("x");
   if (xi === -1) {
@@ -63,10 +67,12 @@ function fillWordBrand(ctx, text, cx, cy, fontSize, fontFamily) {
   }
   const pre = text.slice(0, xi);
   const post = text.slice(xi + 1);
-  const mainFont = `${fontSize}px ${fontFamily}`;
-  const xFont = `${Math.max(1, Math.round(fontSize * 0.62))}px ${fontFamily}`;
+  const mainFont = `700 ${fontSize}px ${BRAND_FONT}`;
+  const xFont = `700 ${Math.max(1, Math.round(fontSize * 0.62))}px ${BRAND_FONT}`;
+  const postFont = `300 ${fontSize}px ${BRAND_FONT}`;
   ctx.font = mainFont;
   const wPre = ctx.measureText(pre).width;
+  ctx.font = postFont;
   const wPost = ctx.measureText(post).width;
   ctx.font = xFont;
   const wX = ctx.measureText("x").width;
@@ -76,7 +82,7 @@ function fillWordBrand(ctx, text, cx, cy, fontSize, fontFamily) {
   ctx.fillText(pre, left, cy);
   ctx.font = xFont;
   ctx.fillText("x", left + wPre, cy - fontSize * 0.3);
-  ctx.font = mainFont;
+  ctx.font = postFont;
   ctx.fillText(post, left + wPre + wX, cy);
   ctx.textAlign = "center";
 }
@@ -105,13 +111,17 @@ function sampleTextToPoints(text, opts) {
   // 0.34: dar ekranda kelimeye biraz daha alan — noktalar sıkışmasın
   // (uzun kelime taşması aşağıdaki maxWidth ölçümüyle zaten engelleniyor)
   let fontSize = Math.floor(Math.min(height * 0.38, width * 0.34));
-  ctx.font = `${fontSize}px ${fontFamily}`;
+  /* Marka kelimesi Helvetica ile çizilir; sığdırma ölçümü de aynı (en geniş
+     hali: kalın) fontla yapılır ki taşma olmasın */
+  const brandWord = text.indexOf("x") !== -1;
+  const measureFont = (s) => (brandWord ? `700 ${s}px ${BRAND_FONT}` : `${s}px ${fontFamily}`);
+  ctx.font = measureFont(fontSize);
   /* Dar tuvalde uzun kelime (TEDxGültepe) ezilmesin: alan %92'ye çıkar */
   const maxWidth = width * (width < 640 ? 0.92 : 0.78);
   const measured = ctx.measureText(text).width;
   if (measured > maxWidth && measured > 0) {
     fontSize = Math.floor(fontSize * (maxWidth / measured));
-    ctx.font = `${fontSize}px ${fontFamily}`;
+    ctx.font = measureFont(fontSize);
   }
   fillWordBrand(ctx, text, width / 2, height / 2, fontSize, fontFamily);
 
