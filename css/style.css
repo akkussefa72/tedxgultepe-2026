@@ -2441,7 +2441,7 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   .kirilma__cta { margin-top: 1.2rem; padding: 0.75rem 1.5rem; font-size: 0.66rem; }
 
   /* Menü: ortalama yerine üstten başla — üst boşluk dağınıklığı gider */
-  .menu { justify-content: flex-start; padding-top: 6.2rem; }
+  .menu { justify-content: flex-start; padding-top: calc(6.2rem + env(safe-area-inset-top, 0px)); }
   .menu__foot { margin-top: auto; padding-top: 1.6rem; }
 
   /* Partner ızgarası: 4 sütun mobilde pul gibi kalıyor — 2 sütun */
@@ -2605,3 +2605,21 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 @media (pointer: coarse), (prefers-reduced-motion: reduce) {
   .imlecx { display: none; }
 }
+
+/* ============================================================
+   iOS DURUM ÇUBUĞU ŞERİDİ — viewport-fit=cover ile sayfa çentik
+   altına uzar; üstteki güvenli alan marka kırmızısına boyanır.
+   Çentiksiz cihazlarda inset 0 → şerit görünmez.
+   ============================================================ */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--c-red);
+  z-index: 9998;
+  pointer-events: none;
+}
+.site-head { padding-top: calc(1.1rem + env(safe-area-inset-top, 0px)); }
