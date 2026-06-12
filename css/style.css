@@ -21,6 +21,7 @@
   --f-sans: "Archivo", "Helvetica Neue", sans-serif;
 
   --pad-x: clamp(1.25rem, 4vw, 5rem);
+  --bar-h: 2.5rem; /* üst duyuru bandı */
   --sec-y: clamp(5.5rem, 14vh, 11rem);
 
   --t-hero-name: clamp(4.2rem, 17.5vw, 17rem);
@@ -251,23 +252,50 @@ address { font-style: normal; }
    ============================================================ */
 .site-head {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: var(--bar-h); left: 0; right: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
   padding: 1.1rem var(--pad-x);
-  transition: background-color 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+  transition: background-color 0.4s ease, padding 0.4s ease, border-color 0.4s ease, top 0.4s ease;
   border-bottom: 1px solid transparent;
 }
 .site-head.is-solid {
+  top: 0;
   background: rgba(10, 10, 10, 0.82);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--line-light);
   padding-block: 0.75rem;
 }
+
+/* ---------- Üst duyuru bandı — iOS üst şeridi bunun rengini alır ---------- */
+.announce {
+  position: relative;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: var(--bar-h);
+  padding-inline: var(--pad-x);
+  background: var(--c-red);
+  color: var(--c-white);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+.announce b {
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.1em;
+}
+.announce:hover b { border-bottom-color: transparent; }
 
 /* Logo — bitişik "TEDxGÜLTEPE" + TEDx marka etiketi ("x = bağımsız...") */
 .logo {
@@ -402,7 +430,7 @@ body.menu-open { overflow: hidden; }
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: calc(100svh - var(--bar-h));
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -2344,7 +2372,7 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 
   /* ---- MOBİL POSTER HERO: ekran 1 = 100svh, ortalanmış kompozisyon ---- */
   /* İlk ekran yalnız poster: kartlar fold altında kalır (32rem kısa ekran tabanı) */
-  .hero { --hero-frame: max(100svh, 32rem); min-height: auto; padding-top: 0; padding-bottom: 2.4rem; }
+  .hero { --hero-frame: max(100svh - var(--bar-h), 32rem); min-height: auto; padding-top: 0; padding-bottom: 2.4rem; }
   /* X ve glow yalnız ilk ekranı çerçeveler */
   .hero__canvas, .hero__glow { height: var(--hero-frame); bottom: auto; }
   .hero__inner {
@@ -2620,7 +2648,7 @@ body::after {
   top: 0;
   left: 0;
   right: 0;
-  height: max(env(safe-area-inset-top, 0px), 5px);
+  height: env(safe-area-inset-top, 0px);
   background: var(--c-red);
   z-index: 9998;
   pointer-events: none;
