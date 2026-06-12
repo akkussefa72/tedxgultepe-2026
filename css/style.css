@@ -201,7 +201,7 @@ address { font-style: normal; }
    ============================================================ */
 .loader {
   position: fixed;
-  inset: 0;
+  inset: var(--bar-h) 0 0 0; /* duyuru bandı yükleyicide de görünür — iOS üst şerit rengini ilk boyamada alır */
   z-index: 200;
   display: none;
   background: var(--c-black);
