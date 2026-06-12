@@ -2611,13 +2611,16 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
    altına uzar; üstteki güvenli alan marka kırmızısına boyanır.
    Çentiksiz cihazlarda inset 0 → şerit görünmez.
    ============================================================ */
+/* Her platformda görünür ince marka çizgisi (TED tarzı); çentikli
+   iOS'ta güvenli alanın tamamını kaplar — Safari üst şeridi bundan
+   örnekler */
 body::after {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: env(safe-area-inset-top, 0px);
+  height: max(env(safe-area-inset-top, 0px), 5px);
   background: var(--c-red);
   z-index: 9998;
   pointer-events: none;
