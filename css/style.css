@@ -2672,21 +2672,49 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 }
 /* Sponsor Ol butonu yalnız mobil hero düzeninde görünür */
 .hero__cta--sponsor { display: none; }
+/* Vakıf rozeti kare ve kendi laciverti ile — beyaz kart içinde ezilmesin */
+.hp-logo-img--vakif {
+  padding: 0;
+  background: transparent;
+  width: 2.75rem;
+  max-width: 2.75rem;
+  border-radius: 6px;
+  opacity: 1;
+}
+/* Sponsor Ol — hap buton: kırmızı çerçeve, hover'da dolar */
 .hp-logo--sponsor {
-  color: var(--c-red);
-  opacity: 0.95;
-  font-weight: 400;
+  font-family: var(--f-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-white);
+  opacity: 1;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  transition: opacity 0.3s ease;
+  gap: 0.45rem;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid rgba(235, 0, 40, 0.65);
+  border-radius: 999px;
+  background: linear-gradient(rgba(235, 0, 40, 0.16), rgba(235, 0, 40, 0.05));
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 .hp-logo--sponsor i {
   font-style: normal;
-  transition: transform 0.3s ease;
+  color: var(--c-red);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
-.hp-logo--sponsor:hover { opacity: 1; }
-.hp-logo--sponsor:hover i { transform: translateX(4px); }
+.hp-logo--sponsor:hover,
+.hp-logo--sponsor:focus-visible {
+  background: var(--c-red);
+  border-color: var(--c-red);
+  color: var(--c-white);
+}
+.hp-logo--sponsor:hover i,
+.hp-logo--sponsor:focus-visible i {
+  color: var(--c-white);
+  transform: translateX(4px);
+}
 
 /* --- KARELER: 2025 galerisi --- */
 .snaps {
