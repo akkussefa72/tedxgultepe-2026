@@ -277,10 +277,10 @@ address { font-style: normal; }
   align-items: flex-start;
   gap: 0.36rem;
   line-height: 1;
-  font-family: var(--f-display);
-  font-weight: 400;
-  font-size: 1.9rem;
-  letter-spacing: 0.03em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: -0.02em;
 }
 .logo__word { display: inline-flex; align-items: baseline; }
 .logo__tedx { color: var(--c-red); }
@@ -2192,8 +2192,10 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 }
 
 .footer__wordmark {
-  font-family: var(--f-display);
-  font-size: clamp(3rem, 12.5vw, 12.5rem);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 10vw, 10rem);
+  letter-spacing: -0.03em;
   line-height: 0.9;
   text-transform: uppercase;
   color: var(--c-red);
