@@ -226,7 +226,6 @@ address { font-style: normal; }
 .loader__word {
   font-family: var(--f-display);
   font-size: clamp(1.8rem, 5vw, 3.2rem);
-  text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 .loader__count {
@@ -269,7 +268,7 @@ address { font-style: normal; }
   padding-block: 0.75rem;
 }
 
-/* Logo — bitişik "TEDxGÜLTEPE" + TEDx marka etiketi ("x = bağımsız...") */
+/* Logo — bitişik "TEDxGültepe" + TEDx marka etiketi ("x = bağımsız...") */
 .logo {
   display: inline-flex;
   transition: opacity 0.4s ease;
@@ -278,9 +277,9 @@ address { font-style: normal; }
   gap: 0.36rem;
   line-height: 1;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 300;
   font-size: 1.7rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 .logo__word { display: inline-flex; align-items: baseline; }
 .logo__tedx { color: var(--c-red); }
@@ -436,10 +435,9 @@ body.menu-open { overflow: hidden; }
 .hero__inner { position: relative; z-index: 2; }
 
 .hero__title {
-  font-family: var(--f-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 0.88;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 0.92;
   margin-left: -0.04em;
 }
 /* Mobil poster rozeti — masaüstünde yok */
@@ -925,7 +923,6 @@ body.menu-open { overflow: hidden; }
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.5em;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
 }
 .kirilma__word {
@@ -1665,7 +1662,6 @@ body.menu-open { overflow: hidden; }
   font-family: var(--f-display);
   font-size: 0.9rem;
   letter-spacing: 0.4em;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
 }
 .ptext__caption b { font-weight: 400; color: var(--c-red); }
@@ -2193,11 +2189,10 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 
 .footer__wordmark {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 300;
   font-size: clamp(2.5rem, 10vw, 10rem);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   line-height: 0.9;
-  text-transform: uppercase;
   color: var(--c-red);
   white-space: nowrap;
   margin-left: -0.04em;

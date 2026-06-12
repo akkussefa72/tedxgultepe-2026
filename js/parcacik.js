@@ -10,7 +10,7 @@
 const sec = document.querySelector("[data-ptext]");
 const canvas = sec?.querySelector("[data-pt-canvas]");
 
-const WORDS = ["CESARET", "FİKİR", "TOPLULUK", "EŞİK", "TEDxGÜLTEPE"];
+const WORDS = ["CESARET", "FİKİR", "TOPLULUK", "EŞİK", "TEDxGültepe"];
 
 /* Fizik ayarları — handoff değerleri */
 const STIFFNESS = 9.0;
@@ -106,7 +106,7 @@ function sampleTextToPoints(text, opts) {
   // (uzun kelime taşması aşağıdaki maxWidth ölçümüyle zaten engelleniyor)
   let fontSize = Math.floor(Math.min(height * 0.38, width * 0.34));
   ctx.font = `${fontSize}px ${fontFamily}`;
-  /* Dar tuvalde uzun kelime (TEDxGÜLTEPE) ezilmesin: alan %92'ye çıkar */
+  /* Dar tuvalde uzun kelime (TEDxGültepe) ezilmesin: alan %92'ye çıkar */
   const maxWidth = width * (width < 640 ? 0.92 : 0.78);
   const measured = ctx.measureText(text).width;
   if (measured > maxWidth && measured > 0) {
@@ -296,7 +296,7 @@ if (sec && canvas) {
     function renderCaption() {
       const word = WORDS[index];
       if (captionEl) {
-        if (word === "TEDxGÜLTEPE") captionEl.innerHTML = '<b>TED<span class="tedx-x">x</span></b>GÜLTEPE';
+        if (word === "TEDxGültepe") captionEl.innerHTML = '<b>TED<span class="tedx-x">x</span></b>Gültepe';
         else captionEl.textContent = word;
       }
       if (liveEl) liveEl.textContent = "Aktif kelime: " + word;
