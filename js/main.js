@@ -47,6 +47,7 @@
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
+    window.siteLenis = lenis; // küre galerisi içeri girince kaydırmayı kilitler
   }
 
   /* ---------- Anchor scrolling ---------- */
@@ -63,7 +64,7 @@
 
   /* ---------- Initial hidden states (loader covers the paint) ---------- */
   gsap.set(".hero .mask__inner", { yPercent: 130 });
-  gsap.set(".hero__eyebrow", { autoAlpha: 0, y: 14 });
+  gsap.set(".hero__eyebrow, .hero__sub", { autoAlpha: 0, y: 14 });
   gsap.set(".site-head", { yPercent: -120, autoAlpha: 0 });
   gsap.set(".hero__canvas, .hero__glow", { autoAlpha: 0 });
   gsap.set(".hero__bottom > *", { autoAlpha: 0, y: 16 });
@@ -115,15 +116,14 @@
       })
       .to(".hero__canvas, .hero__glow", { autoAlpha: 1, duration: 1.6, ease: "power2.out" }, "-=0.45")
       .to(".hero .mask__inner", { yPercent: 0, duration: 1.15, stagger: 0.09 }, "-=1.2")
-      .to(".hero__eyebrow", { autoAlpha: 1, y: 0, duration: 0.7 }, "-=1.0")
+      .to(".hero__eyebrow, .hero__sub", { autoAlpha: 1, y: 0, duration: 0.7 }, "-=1.0")
       .to(".site-head", { yPercent: 0, autoAlpha: 1, duration: 0.9 }, "-=0.8")
       .to(".hero__bottom > *", { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.08 }, "-=0.7")
       .to(
         ".hero__cards .hcard",
         { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.13, onComplete: startCardFloat },
         "-=0.75"
-      )
-      .fromTo("[data-tix-bar]", { width: "0%" }, { width: "72%", duration: 1.2, ease: "power3.inOut" }, "-=0.5");
+      );
 
     initScrollAnimations();
     initCountdown(true);

@@ -23,8 +23,8 @@
   --pad-x: clamp(1.25rem, 4vw, 5rem);
   --sec-y: clamp(5.5rem, 14vh, 11rem);
 
-  --t-hero-name: clamp(4.2rem, 17.5vw, 17rem);
-  --t-hero-tedx: clamp(2.2rem, 7vw, 6.2rem);
+  --t-hero-name: clamp(4rem, 16.5vw, 15.5rem);
+  --t-hero-tedx: clamp(2.1rem, 6.6vw, 5.9rem);
   --t-sec: clamp(2.6rem, 6.5vw, 6rem);
   --t-lead: clamp(1.25rem, 2.4vw, 2rem);
   --t-body: clamp(0.95rem, 1.1vw, 1.05rem);
@@ -173,8 +173,10 @@ address { font-style: normal; }
   overflow: hidden;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: color 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+  border-radius: 0; /* keskin blok — tüm butonların ortak dili */
+  transition: color 0.35s var(--ease-out), border-color 0.35s var(--ease-out), transform 0.15s ease;
 }
+.btn:active { transform: scale(0.97); }
 .btn--sm { padding: 0.7rem 1.4rem; font-size: 0.72rem; }
 .btn__label { position: relative; z-index: 1; }
 
@@ -456,7 +458,7 @@ body.menu-open { overflow: hidden; }
   letter-spacing: 0.005em;
   color: var(--c-white);
   /* küçük harf düzeninde satırlar sıkı dursun (büyük harf boşluğu kaldırıldı) */
-  margin-top: -0.06em;
+  margin-top: -0.22em;
 }
 
 .hero__row {
@@ -468,14 +470,20 @@ body.menu-open { overflow: hidden; }
   flex-wrap: wrap;
 }
 /* Sponsorlar tema+CTA satırının altında */
-.hero__lead .hero__partners { flex-basis: 100%; margin-top: 0.3rem; }
 
 .hero__theme {
   font-family: var(--f-serif);
-  font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+  font-size: clamp(1.2rem, 2.3vw, 1.8rem);
   line-height: 1.25;
   color: var(--c-white);
   max-width: 30ch;
+}
+.hero__sub {
+  max-width: 52ch;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
 }
 /* Masaüstünde içerik dikeyde ortalı; koordinat satırı altta sabit */
 @media (min-width: 1100px) {
@@ -491,12 +499,12 @@ body.menu-open { overflow: hidden; }
   }
 }
 
-/* Tema cümlesi + CTA yan yana; sponsorlar altta tam satır */
+/* Dikey akış: tema → alt yazı → buton */
 .hero__lead {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.4rem 2.4rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
 }
 .hero__cta {
   padding: 0.8rem 1.8rem;
@@ -512,68 +520,47 @@ body.menu-open { overflow: hidden; }
 }
 
 /* Destekleyenler — meta bloğunun yerini alan sponsor logoları */
-.hero__partners { display: flex; flex-direction: column; gap: 0.65rem; }
-.hero__partners-label {
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--c-gray);
+/* Destekleyenler artık Bilet Durumu kartında (hcard--tix) kesintisiz döner */
+.hcard__sponsors {
+  overflow: hidden;
+  margin-top: 0.9rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
-.hero__partners-row {
+.hcard__sponsors-row {
   display: flex;
-  align-items: baseline;
-  gap: clamp(0.9rem, 1.8vw, 1.7rem);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.7rem;
+  width: max-content;
+  animation: hcardLoop 20s linear infinite;
 }
-.hp-logo {
-  font-family: var(--f-display);
-  font-size: 1.02rem;
-  letter-spacing: 0.05em;
-  color: var(--c-white);
-  opacity: 0.55;
-  white-space: nowrap;
-  transition: opacity 0.3s ease;
+/* Satır içeriği 2 kopya: %50 kayınca baştakiyle birebir hizalanır — dikişsiz */
+@keyframes hcardLoop {
+  to { transform: translateX(calc(-50% - 0.35rem)); }
 }
-.hp-logo:hover { opacity: 1; }
-.hp-logo small {
-  font-family: var(--f-serif);
-  font-style: italic;
-  font-size: 0.72em;
-  margin-left: 0.18em;
-  color: var(--c-red);
+.hcard__sponsors .hp-logo-img {
+  height: 2.1rem;
+  max-width: 7.5rem;
+  padding: 0.35rem 0.55rem;
 }
-.hp-logo--main { opacity: 0.95; }
-.hp-logo--wide {
-  font-family: var(--f-sans);
-  font-weight: 700;
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
+.hcard__sponsors .hp-logo-img--vakif {
+  width: 2.1rem;
+  max-width: 2.1rem;
+  padding: 0;
 }
-.hp-logo--all {
-  font-family: var(--f-sans);
-  font-weight: 700;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--c-red);
-  opacity: 0.9;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 0.15rem;
-}
-.hp-logo--all:hover { opacity: 1; color: var(--c-white); }
 
 /* Görsel sponsor logoları — marka renkleriyle; koyu hero zemininde
    okunurluk için açık plaka üzerinde. SVG'ler içerik sınırına kırpık. */
 .hp-logo-img {
-  height: 2.75rem;
+  height: 3.2rem;
   width: auto;
-  max-width: 11rem;
+  max-width: 12.5rem;
   object-fit: contain;
-  padding: 0.55rem 0.85rem;
+  padding: 0.6rem 0.95rem;
   background: var(--c-paper);
   border-radius: 0.4rem;
-  opacity: 0.96;
+  opacity: 1;
   transition: opacity 0.3s ease, transform 0.35s var(--ease-out);
 }
 .hp-logo-img:hover { opacity: 1; transform: scale(1.05); }
@@ -610,19 +597,18 @@ body.menu-open { overflow: hidden; }
   z-index: 3;
   right: clamp(1.5rem, 4vw, 5rem);
   top: 46%;
-  /* Masaüstünde kartlar %15 büyük — iç ölçüler orantılı ölçeklenir */
-  transform: translateY(-50%) scale(1.15);
+  transform: translateY(-50%);
   transform-origin: 100% 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 1.1rem;
-  width: min(340px, 26vw);
+  width: min(375px, 28vw);
 }
 
 /* Kartlar başlık/meta satırıyla çakışmasın */
 @media (min-width: 1100px) {
-  .hero__row { padding-right: calc(min(340px, 26vw) + clamp(1rem, 2.5vw, 3rem)); }
+  .hero__row { padding-right: calc(min(375px, 28vw) + clamp(1rem, 2.5vw, 3rem)); }
 }
 
 .hcard {
@@ -637,8 +623,6 @@ body.menu-open { overflow: hidden; }
 .hcard--spk { border-top: 2px solid var(--c-red); }
 .hcard--count { width: 84%; }
 .hcard--tix { width: 92%; }
-/* Destekleyenler kartı yalnız mobil poster düzeninde görünür */
-.hcard--sponsors { display: none; }
 
 .hcard__head {
   display: flex;
@@ -971,7 +955,7 @@ body.menu-open { overflow: hidden; }
   margin-top: 1.6rem;
   padding: 0.85rem 1.8rem;
   border: 1px solid rgba(235, 0, 40, 0.7);
-  border-radius: 999px;
+  border-radius: 0; /* keskin blok buton dili */
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -2377,34 +2361,13 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   .hero__eyebrow b { color: var(--c-red); }
   /* Kenardan kenara tipografi; TEDX hafif bindirilmiş */
   .hero__title { display: flex; flex-direction: column; align-items: center; }
-  .hero__tedx { font-size: 9.5vw; margin-bottom: -3vw; }
-  .hero__name { font-size: 24.5vw; letter-spacing: -0.012em; line-height: 0.98; }
+  .hero__tedx { font-size: 9vw; margin-bottom: -5vw; }
+  .hero__name { font-size: 23.5vw; letter-spacing: -0.012em; line-height: 0.98; }
   .hero__row { margin-top: 1.1rem; justify-content: center; }
   .hero__lead { flex-direction: column; align-items: center; gap: 1.2rem; }
   .hero__theme { max-width: 28ch; }
+  .hero__sub { text-align: center; max-width: 34ch; }
   .hero__cta { min-height: 46px; padding: 0.8rem 1.9rem; font-size: 0.72rem; }
-  /* Sponsorlar ilk ekrandan çıktı — en alttaki karta taşındı */
-  .hero__lead .hero__partners { display: none; }
-  .hcard--sponsors { display: block; }
-  .hcard__sponsors {
-    overflow: hidden;
-    margin-top: 0.8rem;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-  }
-  .hcard__sponsors-row {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 0.7rem;
-    width: max-content;
-    animation: hcardSlide 8s ease-in-out infinite alternate;
-  }
-  /* Kart iç genişliği = 100vw − 2·pad-x (wrap) − 2·1.2rem (hcard padding) */
-  @keyframes hcardSlide {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(100vw - (2 * var(--pad-x)) - 2.4rem - 100%)); }
-  }
   /* Taban satırı ilk ekranın dibine sabit */
   .hero .hero__bottom {
     position: absolute;
@@ -2463,7 +2426,6 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 
   .kirilma__hud { bottom: 1.4rem; }
   .kirilma__desc { font-size: 0.82rem; }
-  .hp-logo-img { height: 2.1rem; max-width: 8rem; padding: 0.35rem 0.6rem; }
   .ptext__hud { padding-bottom: 2.2rem; }
   .ptext__kicker { letter-spacing: 0.3em; }
 
@@ -2676,44 +2638,10 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 .hp-logo-img--vakif {
   padding: 0;
   background: transparent;
-  width: 2.75rem;
-  max-width: 2.75rem;
+  width: 3.2rem;
+  max-width: 3.2rem;
   border-radius: 6px;
   opacity: 1;
-}
-/* Sponsor Ol — hap buton: kırmızı çerçeve, hover'da dolar */
-.hp-logo--sponsor {
-  font-family: var(--f-sans);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-white);
-  opacity: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.6rem 1.1rem;
-  border: 1px solid rgba(235, 0, 40, 0.65);
-  border-radius: 999px;
-  background: linear-gradient(rgba(235, 0, 40, 0.16), rgba(235, 0, 40, 0.05));
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-}
-.hp-logo--sponsor i {
-  font-style: normal;
-  color: var(--c-red);
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-.hp-logo--sponsor:hover,
-.hp-logo--sponsor:focus-visible {
-  background: var(--c-red);
-  border-color: var(--c-red);
-  color: var(--c-white);
-}
-.hp-logo--sponsor:hover i,
-.hp-logo--sponsor:focus-visible i {
-  color: var(--c-white);
-  transform: translateX(4px);
 }
 
 /* --- KARELER: 2025 galerisi --- */
@@ -2722,22 +2650,49 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
   padding-block: var(--sec-y);
   border-top: 1px solid var(--line-light);
 }
-.snaps__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-rows: clamp(9rem, 16vw, 15rem);
-  gap: clamp(0.6rem, 1.4vw, 1.1rem);
-  margin-top: clamp(2rem, 5vw, 3.5rem);
+.snaps__swipe {
+  display: block;
+  margin: clamp(1.6rem, 4vw, 2.6rem) 0 0.9rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-gray);
 }
+/* Film şeridi: sabit yükseklik — kaç kare eklenirse eklensin sayfa uzamaz.
+   Yeni kare eklemek = şeride bir <figure> daha koymak. */
+.snaps__strip {
+  --snaps-h: clamp(16rem, 36vh, 24rem);
+  display: flex;
+  gap: clamp(0.6rem, 1.4vw, 1.1rem);
+  height: var(--snaps-h);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  padding-bottom: 0.9rem;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-red) rgba(255, 255, 255, 0.08);
+}
+.snaps__strip::-webkit-scrollbar { height: 4px; }
+.snaps__strip::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.08); }
+.snaps__strip::-webkit-scrollbar-thumb { background: var(--c-red); }
 .snaps__item {
   position: relative;
   display: block;
+  flex: 0 0 auto;
+  height: calc(var(--snaps-h) - 0.9rem - 4px);
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   background: #1d1d1d;
   border-radius: 4px;
+  scroll-snap-align: start;
+  margin: 0;
 }
-.snaps__item--tall { grid-row: span 2; }
-.snaps__item--wide { grid-column: span 2; }
+.snaps__item--wide,
+.snaps__item--video { aspect-ratio: 16 / 10; }
 .snaps__item img {
   width: 100%;
   height: 100%;
@@ -2866,18 +2821,14 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 .wall__card--mine { border-color: var(--c-red); }
 
 /* --- Yeni bölümler: responsive --- */
-@media (max-width: 900px) {
-  .snaps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: clamp(8rem, 24vw, 12rem); }
-}
 @media (max-width: 700px) {
   .wall__form { flex-direction: column; }
   .wall__form .btn { align-self: flex-start; }
   .wall__grid { grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
   .hero__cta--sponsor { display: inline-flex; }
+  .snaps__strip { --snaps-h: clamp(13rem, 52vw, 17rem); }
 }
 @media (max-width: 480px) {
-  .snaps__grid { grid-template-columns: 1fr; grid-auto-rows: 11rem; }
-  .snaps__item--wide { grid-column: auto; }
   .hero__cta-row { justify-content: center; }
 }
 
@@ -2885,4 +2836,128 @@ a.tix__btn:hover { background: var(--c-white); color: var(--c-black); }
 .imlecx__x .imlecx__casing {
   stroke: rgba(255, 255, 255, 0.92);
   stroke-width: 17;
+}
+
+/* --- KÜRE GALERİSİ (Kareler) ---
+   Tam genişlik sinematik bant + "vizör" katmanı (köşe çerçeveleri,
+   yanıp sönen arşiv rozeti, kare sayacı, koordinat). Kürenin
+   merkezinde parlayan kırmızı X durur (kure.js çizer). */
+.kure {
+  position: relative;
+  height: clamp(28rem, 78vh, 44rem);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  overflow: hidden;
+  /* Taban rengi YOK: bölümün siyahı kesintisiz devam eder (kopukluk olmaz),
+     yalnız kürenin ardında kırmızı bir parlama durur */
+  background: radial-gradient(ellipse at 50% 46%, rgba(235, 0, 40, 0.14), transparent 52%);
+}
+.kure[hidden] { display: none; }
+.kure__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+}
+.kure__canvas:active { cursor: grabbing; }
+
+/* Vizör katmanı */
+.kure__hud { position: absolute; inset: clamp(1rem, 2.5vw, 2rem); pointer-events: none; }
+.kure__corner {
+  position: absolute;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 0 solid rgba(255, 255, 255, 0.4);
+}
+.kure__corner--tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.kure__corner--tr { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.kure__corner--bl { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+.kure__corner--br { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+.kure__tag,
+.kure__count,
+.kure__coords {
+  position: absolute;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.66);
+  white-space: nowrap;
+}
+.kure__tag { top: 0.35rem; left: 2.4rem; display: inline-flex; align-items: center; gap: 0.55rem; }
+.kure__tag i {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--c-red);
+  animation: kure-rec 1.6s ease-in-out infinite;
+}
+@keyframes kure-rec {
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px rgba(235, 0, 40, 0.9); }
+  50% { opacity: 0.25; box-shadow: none; }
+}
+.kure__count { top: 0.35rem; right: 2.4rem; color: var(--c-red); }
+.kure__coords { bottom: 0.35rem; left: 2.4rem; color: rgba(255, 255, 255, 0.34); }
+
+.kure__tag em { font-style: normal; }
+.kure__hint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.35rem, 3vw, 2.35rem);
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  white-space: nowrap;
+  pointer-events: none;
+  /* küreyle çakışmasın: cam çip */
+  padding: 0.55rem 1rem 0.5rem 1.2rem;
+  background: rgba(7, 7, 7, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+.kure__exit {
+  position: absolute;
+  top: clamp(1rem, 2.5vw, 2rem);
+  right: clamp(1rem, 2.5vw, 2rem);
+  z-index: 5;
+}
+.kure__exit[hidden] { display: none; }
+/* Çıkış butonu açıkken sağ üst sayaçla çakışmasın */
+.kure.kure--acik .kure__count { top: auto; bottom: 0.35rem; right: 2.4rem; }
+
+/* İçine girilince: tam ekran moda geçer, sayfa kaydırması kilitlenir.
+   Çift sınıf şart: medya bloğundaki .kure{height} kuralını her durumda yensin */
+.kure.kure--acik {
+  position: fixed;
+  inset: 0;
+  z-index: 320;
+  height: auto;
+  width: auto;
+  margin: 0;
+  background-color: var(--c-black);
+}
+html.kure-kilit,
+html.kure-kilit body { overflow: hidden; }
+/* Küre kurulunca şerit gizlenir (WebGL yoksa şerit fallback olarak kalır) */
+.snaps--kure .snaps__strip,
+.snaps--kure .snaps__swipe { display: none; }
+@media (max-width: 700px) {
+  .kure { height: clamp(22rem, 64vh, 32rem); }
+  .kure__tag { letter-spacing: 0.14em; }
+  .kure__tag em { display: none; } /* dar ekranda tema adı sığmaz */
+  .kure__count { letter-spacing: 0.14em; }
+  .kure__coords { display: none; }
+  .kure__hint {
+    font-size: 0.54rem;
+    letter-spacing: 0.16em;
+    bottom: 1.1rem;
+    max-width: calc(100% - 2rem);
+  }
 }

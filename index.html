@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css?v=52" />
+  <link rel="stylesheet" href="css/style.css?v=58" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -133,6 +133,7 @@
             <p class="hero__theme">
               <span class="mask"><span class="mask__inner"><em>Eşik</em> — olan ile olabilecek arasında,<br/>tam çizginin üstünde duruyoruz.</span></span>
             </p>
+            <p class="hero__sub">Tek sahnede sekiz konuşmacı, iki performans ve eşik üzerine bir gün — fikirler, hikâyeler ve sorularla 17 Ekim'de Batman'da buluşuyoruz.</p>
             <div class="hero__cta-row">
               <a href="#bilet" class="btn btn--red hero__cta" data-magnetic>
                 <span class="btn__label">Yerini Ayırt</span>
@@ -140,17 +141,6 @@
               <a href="basvuru.html?tip=sponsor" class="btn btn--ghost hero__cta hero__cta--sponsor" data-magnetic>
                 <span class="btn__label">Sponsor Ol</span>
               </a>
-            </div>
-            <div class="hero__partners">
-              <span class="hero__partners-label">Destekleyenler</span>
-              <div class="hero__partners-row">
-                <img class="hp-logo-img hp-logo-img--vakif" src="img/sponsors/ahmet-dinc-vakfi.svg?v=37" alt="Ahmet Dinç Vakfı" height="30" loading="lazy" />
-                <img class="hp-logo-img" src="img/sponsors/sponsor-2.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
-                <img class="hp-logo-img" src="img/sponsors/sponsor-3.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
-                <img class="hp-logo-img" src="img/sponsors/sponsor-4.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
-                <img class="hp-logo-img" src="img/sponsors/sponsor-5.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
-                <a class="hp-logo hp-logo--sponsor" href="basvuru.html?tip=sponsor">Sponsor Ol <i>→</i></a>
-              </div>
             </div>
           </div>
         </div>
@@ -184,17 +174,8 @@
         </div>
 
         <div class="hcard hcard--tix">
-          <span class="hcard__label">Bilet durumu</span>
-          <div class="hcard__bar" role="img" aria-label="Salon yüzde 72 dolu">
-            <i data-tix-bar></i>
-          </div>
-          <p class="hcard__fill">Salon <b>%72</b> dolu</p>
-          <a class="hcard__cta" href="#bilet">Yerini Ayırt →</a>
-        </div>
-
-        <!-- Yalnız mobil: destekleyenler kartı, logolar otomatik kayar -->
-        <div class="hcard hcard--sponsors">
           <span class="hcard__label">Destekleyenler</span>
+          <!-- Logolar kesintisiz döner (satır 2 kopya içerir) -->
           <div class="hcard__sponsors">
             <div class="hcard__sponsors-row">
               <img class="hp-logo-img hp-logo-img--vakif" src="img/sponsors/ahmet-dinc-vakfi.svg?v=37" alt="Ahmet Dinç Vakfı" height="30" loading="lazy" />
@@ -202,9 +183,14 @@
               <img class="hp-logo-img" src="img/sponsors/sponsor-3.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
               <img class="hp-logo-img" src="img/sponsors/sponsor-4.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
               <img class="hp-logo-img" src="img/sponsors/sponsor-5.png?v=37" alt="Sponsor logosu" height="30" loading="lazy" />
-              <a class="hp-logo hp-logo--sponsor" href="basvuru.html?tip=sponsor">Sponsor Ol →</a>
+              <img class="hp-logo-img hp-logo-img--vakif" src="img/sponsors/ahmet-dinc-vakfi.svg?v=37" alt="" aria-hidden="true" height="30" loading="lazy" />
+              <img class="hp-logo-img" src="img/sponsors/sponsor-2.png?v=37" alt="" aria-hidden="true" height="30" loading="lazy" />
+              <img class="hp-logo-img" src="img/sponsors/sponsor-3.png?v=37" alt="" aria-hidden="true" height="30" loading="lazy" />
+              <img class="hp-logo-img" src="img/sponsors/sponsor-4.png?v=37" alt="" aria-hidden="true" height="30" loading="lazy" />
+              <img class="hp-logo-img" src="img/sponsors/sponsor-5.png?v=37" alt="" aria-hidden="true" height="30" loading="lazy" />
             </div>
           </div>
+          <a class="hcard__cta" href="basvuru.html?tip=sponsor">Sponsor Ol →</a>
         </div>
       </aside>
 
@@ -541,38 +527,76 @@
         <header class="sec-head">
           <span class="sec-label sec-label--light"><i></i>04 — Kareler · 2025</span>
           <h2 class="sec-title" data-split>Tepenin<br/><em>hafızası.</em></h2>
-          <p class="sec-note">Geçen yılın salonundan ve sahne arkasından kareler. Karta dokun — renklensin.</p>
+          <p class="sec-note">2025'in salonundan ve kulisinden gerçek kareler. Yana kaydır; karta dokun — renklensin.</p>
         </header>
 
-        <div class="snaps__grid">
-          <figure class="snaps__item snaps__item--tall" data-reveal>
-            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80&sat=-100" alt="2025 etkinliğinde salonun genel görünümü" width="800" height="1067" loading="lazy" />
-            <figcaption>Kapılar açılırken</figcaption>
+        <!-- Küre galerisi (three.js) — JS kurulunca şeridin yerini alır -->
+        <div class="kure" data-kure hidden>
+          <canvas class="kure__canvas" data-kure-canvas aria-label="2025 fotoğraflarından oluşan döndürülebilir küre — tıklayınca içine girilir" role="img"></canvas>
+
+          <!-- Vizör katmanı: köşe çerçeveleri + arşiv rozeti + sayaç -->
+          <div class="kure__hud" aria-hidden="true">
+            <span class="kure__corner kure__corner--tl"></span>
+            <span class="kure__corner kure__corner--tr"></span>
+            <span class="kure__corner kure__corner--bl"></span>
+            <span class="kure__corner kure__corner--br"></span>
+            <span class="kure__tag"><i></i>Arşiv · 2025<em> — İlham Bulaşıcıdır</em></span>
+            <span class="kure__count" data-kure-count>10 Kare</span>
+            <span class="kure__coords">37.887° K — 41.132° D · Gültepe</span>
+          </div>
+
+          <p class="kure__hint" data-kure-hint aria-hidden="true">Sürükle — döndür · Tıkla — içine gir</p>
+          <button type="button" class="btn btn--red btn--sm kure__exit" data-kure-exit hidden>
+            <span class="btn__label">Küreden çık ✕</span>
+          </button>
+        </div>
+
+        <p class="snaps__swipe" aria-hidden="true">Kaydır →</p>
+        <div class="snaps__strip" data-reveal>
+          <figure class="snaps__item">
+            <img src="img/galeri/2025-03.jpg" alt="Dev TEDx harfleri atölyede üretilirken" width="900" height="1200" loading="lazy" />
+            <figcaption>Harfler atölyeden çıkarken</figcaption>
           </figure>
-          <figure class="snaps__item" data-reveal>
-            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=900&q=80&sat=-100" alt="2025 sahnesinde bir konuşmacı" width="900" height="600" loading="lazy" />
-            <figcaption>İlk konuşma, ilk alkış</figcaption>
+          <figure class="snaps__item">
+            <img src="img/galeri/2025-09.jpg" alt="Kuliste kırmızı X kurulurken ekip iş başında" width="900" height="1200" loading="lazy" />
+            <figcaption>Kulis: X kuruluyor</figcaption>
           </figure>
-          <a class="snaps__item snaps__item--video" href="https://www.youtube.com/watch?v=_sVh0lAwFoo" target="_blank" rel="noopener" data-video="_sVh0lAwFoo" data-reveal>
+          <figure class="snaps__item">
+            <img src="img/galeri/2025-02.jpg" alt="Kapılar açılmadan önce boş salon ve sahnedeki TEDxGültepe harfleri" width="900" height="1200" loading="lazy" />
+            <figcaption>Kapılar açılmadan</figcaption>
+          </figure>
+          <figure class="snaps__item">
+            <img src="img/galeri/2025-05.jpg" alt="Kırmızı koltuklarıyla hazır bekleyen salon" width="900" height="1200" loading="lazy" />
+            <figcaption>Her koltuk bir fikir bekliyor</figcaption>
+          </figure>
+          <figure class="snaps__item">
+            <img src="img/galeri/2025-01.jpg" alt="Etkinlik sırasında dolu salon" width="900" height="1200" loading="lazy" />
+            <figcaption>Salon dolarken</figcaption>
+          </figure>
+          <figure class="snaps__item snaps__item--wide">
+            <img src="img/galeri/2025-04.jpg" alt="İzleyici koltuğundan sahneye ve TEDxGültepe harflerine bakış" width="1280" height="720" loading="lazy" />
+            <figcaption>Sahneye bakış</figcaption>
+          </figure>
+          <figure class="snaps__item">
+            <img src="img/galeri/2025-06.jpg" alt="Sahnede bir an: konuşmacılar ve dev ekran" width="900" height="1200" loading="lazy" />
+            <figcaption>Sahnede an</figcaption>
+          </figure>
+          <a class="snaps__item snaps__item--video" href="https://www.youtube.com/watch?v=_sVh0lAwFoo" target="_blank" rel="noopener" data-video="_sVh0lAwFoo">
             <img src="https://i.ytimg.com/vi/_sVh0lAwFoo/hqdefault.jpg" alt="2025 sahnesinden video görüntüleri" width="800" height="600" loading="lazy" />
             <span class="snaps__play" aria-hidden="true">▶︎</span>
             <span class="snaps__cap">Sahneden görüntüler — izle</span>
           </a>
-          <figure class="snaps__item" data-reveal>
-            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=900&q=80&sat=-100" alt="Sahne ışıkları altında salon" width="900" height="600" loading="lazy" />
-            <figcaption>Işıklar tepeye vurdu</figcaption>
+          <figure class="snaps__item">
+            <img src="img/galeri/2025-07.jpg" alt="Fuayede imza masası ve İlham Bulaşıcıdır afişi" width="900" height="1200" loading="lazy" />
+            <figcaption>Fuayede imza saati</figcaption>
           </figure>
-          <figure class="snaps__item snaps__item--wide" data-reveal>
-            <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=80&sat=-100" alt="Etkinlik kalabalığı bir arada" width="1200" height="675" loading="lazy" />
-            <figcaption>Aramızda kalmadı — tepeye taştı</figcaption>
+          <figure class="snaps__item">
+            <img src="img/galeri/2025-08.jpg" alt="Gönüllü ekip sahnede kırmızı X'in yanında" width="900" height="1200" loading="lazy" />
+            <figcaption>Ekip sahnede</figcaption>
           </figure>
-          <figure class="snaps__item" data-reveal>
-            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80&sat=-100" alt="Alkışlayan izleyiciler" width="900" height="600" loading="lazy" />
-            <figcaption>Son sözün alkışı</figcaption>
-          </figure>
-          <figure class="snaps__item snaps__item--tall" data-reveal>
-            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80&sat=-100" alt="Etkinlik sonrası kutlama anı" width="800" height="1067" loading="lazy" />
-            <figcaption>Perde indikten sonra</figcaption>
+          <figure class="snaps__item">
+            <img src="img/galeri/2025-10.jpg" alt="Etkinlik sonrası ekip uzun masada yemekte" width="900" height="1200" loading="lazy" />
+            <figcaption>Uzun masa, tek sofra</figcaption>
           </figure>
         </div>
       </div>
@@ -1101,10 +1125,11 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=40" defer></script>
+  <script src="js/main.js?v=42" defer></script>
   <script src="js/imlec.js?v=40" defer></script>
   <script src="js/kirilma.js?v=40" defer></script>
   <script type="module" src="js/hero3d.js?v=36"></script>
   <script type="module" src="js/parcacik.js?v=42"></script>
+  <script type="module" src="js/kure.js?v=5"></script>
 </body>
 </html>
